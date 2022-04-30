@@ -1,0 +1,16 @@
+%+++Complete+++
+% docART color theme
+\colorlet{docartOrange}{orange}
+\definecolor{docartTurquoise}{HTML}{008983}
+
+% Colors for text
+\colorlet{headlinecolor}{docartTurquoise}%{HTML}{008983}
+
+% Colors for tables
+\definecolor{tableRowHighlightColor}{gray}{0.9}
+
+
+% Colors for highlight boxes
+\definecolor{warningColor}{HTML}{ffd42a}
+\definecolor{infoColor}{HTML}{0b96fb}
+%+++Complete+++

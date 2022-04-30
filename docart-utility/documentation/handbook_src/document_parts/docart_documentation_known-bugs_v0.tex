@@ -1,0 +1,44 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Known Bugs}
+	\lstset{style=LaTeX}
+	\begin{enumerate}
+		\item Some pdf viewers show white lines between the rows in a code listing. This also depends on the zoom level. % Fix: Spacing setting between listing lines?
+		\item \LaTeX~listings have issues that all words in text identical to keywords will be highlighted; cannot use \textbackslash~for regex/identification.
+		\item Highlight boxes can currently not be made from a template and have to be coded from scratch.
+		\item At least two, sometimes three compilations required until tables have correct layout/optics.
+		\item Table row highlighting sometimes dependent upon tables that came before.
+		\item Icon alignment is not accurate, especially in tables.
+		\item \lstinline{\daListingInline} and \lstinline{\lstinline} mess up spacing over line break.
+		\item \lstinline{\daListingInline} requires escaping of \LaTeX~special characters passed in as an argument.
+		\item Indentation correction for listings randomly does not work properly.
+		\item Last line in listings sometimes removed. Seems to be related with the usage of the \enquote{\lstinline$all$} tag. Fix: Add empty line to file. % Case: LaTeX, only } in last line; also happend with C++
+		\item Empty lines in Lua scripts will be removed.
+		\item Setting any expression as \lstinline$emph$ in any listing style will affect all other styles.
+		\item Two sections on the same page have a way too big vertical blank space in between. Fix: \lstinline$\vspace{-1.5cm}$ before the second \lstinline{\section} call.
+		\item No proper math font loaded. The default \LaTeX~math font does not fit the rest of the fonts (size, shape).
+		\item The aux-files on rare occasion have to be manually deleted before the compilation (otherwise compilation will not finish successfully). Observed case: Changing command name of macro which was present in a \LaTeX~list (table of contents, section argument, etc.). Old command name still present in aux-file, which led to an aborted compilation before it could be completed (aux-files therefore did not get properly recreated).
+	\end{enumerate}

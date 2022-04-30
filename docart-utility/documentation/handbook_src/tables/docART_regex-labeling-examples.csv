@@ -1,0 +1,13 @@
+language, comment, delimiter, source code
+C++, \lstinline[style=C++]$//$, \lstinline$+++$, \lstinline[style=C++]$//+++TAG+++$
+\rowcolor{tableRowHighlightColor},, \lstinline$@@@$, \lstinline[style=C++]$//@@@TAG@@@$
+, , \lstinline$!$, \lstinline[style=C++]$//!TAG!$
+Python, \lstinline[style=Python]$#$, \lstinline$+++$, \lstinline[style=Python]$#+++TAG+++$
+\rowcolor{white},, \lstinline$@@@$, \lstinline[style=Python]$#@@@TAG@@@$
+, , \lstinline$!$, \lstinline[style=Python]$#!TAG!$
+\LaTeX, \lstinline[style=LaTeX]$%$, \lstinline$+++$, \lstinline[style=LaTeX]$%+++TAG+++$
+\rowcolor{tableRowHighlightColor},, \lstinline$@@@$, \lstinline[style=LaTeX]$%@@@TAG@@@$
+, , \lstinline$!$, \lstinline[style=LaTeX]$%!TAG!$
+Lua, \lstinline[style=Lua]$--$, \lstinline$+++$, \lstinline[style=Lua]$--+++TAG+++$
+\rowcolor{white},, \lstinline$@@@$, \lstinline[style=Lua]$--@@@TAG@@@$
+, , \lstinline$!$, \lstinline[style=Lua]$--!TAG!$

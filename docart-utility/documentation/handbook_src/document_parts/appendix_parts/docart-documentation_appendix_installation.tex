@@ -1,0 +1,209 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Installation}
+	\label{appendix:chap:installation}
+	\section{Mandatory Steps}
+		In this section, the installation procedure for the mandatory utilities/software packages will be outlined. First in general, than in more details for the respective operating systems (\mbox{Windows}: \mbox{section \ref{installation:mandatory:windows}}, Linux: \mbox{section \ref{installation:mandatory:linux}}, Mac OS: \mbox{section \ref{installation:mandatory:macos}}) and finally the installation of the \mbox{\productName}~utility itself.
+		
+		\newcounter{step}
+		\setcounter{step}{1}
+		
+		\subsubsection{Step \thestep: Check Compliance with IT Security Policy}
+			\begin{daWarningBox}
+				The \productName~Utility uses shell-escape to provide its functionality. Please check BEFORE installing the utility, whether your IT security policy allows this. 
+			\end{daWarningBox}
+			\stepcounter{step}
+		
+		\subsubsection{Step \thestep: Install a pdf Reader}
+			\label{subsubsec:install:mandatory:install-pdf-reader}
+			Although most operating systems provide a pdf Reader out-of-the-box, it is especially under Windows a good practice to install a reader which is known to work well with \LaTeX~(e.\,g. see warning box below). In theory, this step could be done at a later time. However, doing it now has some advantages, especially if one is planing to install the optional dependency TeXstudio later on (see \mbox{section \ref{installation:optional:texstudio}}).
+			\begin{longtable}[c]{ll}
+				\rowcolor{white}
+				\multicolumn{2}{l}{\textbf{Recommendation:}}\\
+				\midrule
+				\endfirsthead
+				Windows: & Sumatra PDF, \href{https://www.sumatrapdfreader.org/free-pdf-reader}{https://www.sumatrapdfreader.org/free-pdf-reader},\\ 
+				& License: \href{https://www.gnu.org/licenses/gpl-3.0.en.html}{GNU General Public License (GPLv3)}\\
+				Linux: & Evince, best via packet manager,\\
+				& License:  GNU Public License (GPL-2.0-or-later)\\
+				\midrule
+			\end{longtable}
+			
+			\begin{daWarningBox}
+				Any Adobe Acrobat Pdf Reader is not ideal for use with \mbox{\productName}~and \LaTeX~in general. When the pdf is opened with the Adobe products, it gets locked, which in turn means that a simultaneous re-compilation with \LaTeX~is not possible. In short: For every compilation, the pdf in the Adobe products has to be closed and afterwards re-opened.
+			\end{daWarningBox}
+			
+			\stepcounter{step}
+		
+		\newpage
+		\subsubsection{Step \thestep: Install Python 3}
+			The \productName~utility requires Python 3 to run. If it is already installed on the machine, one does need to do anything. If it is not installed, please follow the recommendations. 
+			\begin{longtable}[c]{ll}
+				\rowcolor{white}
+				\multicolumn{2}{l}{\textbf{Recommendation:}}\\
+				\midrule
+				\endfirsthead
+				Windows: & direct download from Python Software Foundation, \href{https://www.python.org/}{https://www.python.org/}\\
+				Linux: & If Python 3 is not already included in ones Linux base installation,\\
+				\rowcolor{white}
+				& install it via the packet manager. \\
+				\rowcolor{tableRowHighlightColor}
+				Mac OS: & Currently requires \lstinline$Homebrew$ for Python 3 installation. See section \ref{installation:mandatory:macos}.\\
+				\midrule
+			\end{longtable}
+			
+			\begin{daWarningBox}
+				\begin{itemize}[leftmargin=*]
+					\setlength\itemsep{-0.1em}
+					\item Using Anaconda as a Python backend is not recommended. Python packages included in Anaconda can be different/older than in the official Python Software Foundation/Community Releases. This might lead to \productName~not working properly. In addition, installing Anaconda besides the default Python installation on a Linux system can lead to conflicts.
+					\item When having multiple Python installations available (especially on Linux and Mac OS or when using Anaconda), please check what the default Python version is that gets called via the \lstinline{python} command. For \productName~\productVersion, if \lstinline{python} does not call Python 3.x, the \productName~utility will not work and crash.
+				\end{itemize}
+			\end{daWarningBox}
+			
+			\stepcounter{step}
+		
+		\subsubsection{Step \thestep: Install the \LaTeX-Backend}
+			Both \LaTeX-Backends \lstinline{texlive} and \lstinline{MikTeX} are available for Windows, Linux and Mac OS. The choice is therefore mostly preference based. 
+			\begin{longtable}[c]{ll}
+				\rowcolor{white}
+				\multicolumn{2}{l}{\textbf{Recommendation:}}\\
+				\midrule
+				\endfirsthead
+				Windows: & \lstinline$MikTeX$, direct download from: \href{https://miktex.org/download}{https://miktex.org/download}\\
+				Linux: & \lstinline$texlive$ via the packet manager. \\
+				Mac OS: & \lstinline$MacTeX$, direct download from: \href{https://www.tug.org/mactex/mactex-download.html}{https://www.tug.org/mactex/mactex-download.html}\\
+				\midrule
+			\end{longtable}
+			
+			\begin{daWarningBox}
+				\begin{itemize}[leftmargin=*]
+					\setlength\itemsep{-0.1em}
+					\item For some Windows (Enterprise) and \lstinline{texlive} versions, the authors encountered a corrupted \LaTeX-Backend installation. % or failed  
+					\item  Installing \lstinline{MikTeX} under Linux can lead to font detection problems. Installation of \LaTeX~packages from the Linux repositories is also not possible.
+					\item For the \LaTeX-Backend installation to be recognized, it has to be completed before installing any optional software like TeXstudio.
+				\end{itemize}
+			\end{daWarningBox}
+			
+			
+			\stepcounter{step}
+			
+		\newpage
+		\subsubsection{Step \thestep: Install the Optional Components}
+			Install all the required optional components. Especially for beginner or intermediate \LaTeX~users, it is advantageous to install a \LaTeX~IDE like \lstinline{Texmaker} or \lstinline{TeXstudio} (the latter one is recommended by the authors and its configuration/usage in conjunction with the \productName~utility will be outlined in \mbox{section \ref{installation:optional:texstudio}}, \mbox{section \ref{sec:config:texstudio}} and \mbox{section \ref{chap:docart-usage}}). 
+			\stepcounter{step}
+			
+		\subsubsection{Step \thestep: Download and Unpack the \productName~Utility}
+			%			The necessary files to use the \productName~utility are available on github.
+			\begin{enumerate}[label={Step 6.\arabic*:},leftmargin=*]
+				\setlength\itemsep{-0.2em}
+				\item Download the zip-file or clone the official \productName~github repository:\\
+				\href{https://github.com/d-sacre/docart-documentation-utility}{https://github.com/d-sacre/docart-documentation-utility}
+				\item Only if you downloaded a zip-file: Unpack it into the folder you want to work in.
+			\end{enumerate}
+			
+			\stepcounter{step}
+		
+		\subsubsection{Step \thestep: Configuration}
+			Before the first usage of the \productName, the configuration outlined in \mbox{section \ref{chap:config}} has to be done.
+		
+		\subsection{Windows}
+			\label{installation:mandatory:windows}
+			\textit{A detailed step-by-step guide will be added in the next revision of the document.}
+		
+		\subsection{Linux}
+			\label{installation:mandatory:linux}
+			\textit{A detailed step-by-step guide will be added in the next revision of the document.}
+		
+		\subsection{Mac OS}
+			\label{installation:mandatory:macos}
+			In theory, the \productName~utility should work on any recent installation of Mac OS. However, due to not having access to a system running Mac OS, the authors of the utility could neither verify this nor experiment with the installation process.
+			\begin{daWarningBox}
+				At the time of writing this document, Mac OS still ships with \mbox{Python 2.7} as default installation. Installing Python 3 can be achieved with Super User-level access via \lstinline{Homebrew}. Sometimes \lstinline{Xcode} has to be re-installed. To download the most up-to-date version of \lstinline{Xcode}, a valid Apple ID is required.
+			\end{daWarningBox}
+			
+		\newpage
+		\section{Optional}
+			\subsection{TeXstudio}
+				\label{installation:optional:texstudio}
+				The TeXstudio IDE is a very useful tool since it combines a text editor and pdf viewer within one window, which provides immediate feedback and simplifies debugging. Additionally, it provides direct access to all \LaTeX~functionality, has helper tools for automated code generation (very helpful for \LaTeX~beginners) and automatically deals with complex compilation pipelines without the need of user input.  Furthermore, the included pdf viewer allows compilation whilst the pdf is still open; this is especially handy if Adobe products are used as a default pdf viewer (see \mbox{section \ref{subsubsec:install:mandatory:install-pdf-reader}, p. \pageref{subsubsec:install:mandatory:install-pdf-reader}}).
+				\newline 
+				\begin{longtable}[c]{ll}
+					\rowcolor{white}
+					\multicolumn{2}{l}{\textbf{Recommendation:}}\\
+					\midrule
+					\endfirsthead
+					Windows: & direct download from: \href{https://www.texstudio.org/}{https://www.texstudio.org/}\\
+					Linux: & \lstinline$texstudio$ via the packet manager. \\
+					Mac OS: & direct download from: \href{https://www.texstudio.org/}{https://www.texstudio.org/}\\
+					\midrule
+				\end{longtable}
+				
+			\subsubsection{Installation under Windows}
+				\begin{enumerate}[label={\color{docartTurquoise}Step \arabic*:},leftmargin=*]
+					\setlength\itemsep{-0.2em}
+					\item Open \href{https://www.texstudio.org/}{https://www.texstudio.org/} in a web browser and scroll down/use the link to the \enquote{Download} section.
+					\item Chose the correct TeXstudio version for your operating system (recommendation: Qt5 for stability; the new Qt6 should only be required for extremely high resolution monitors).
+					\item After the download has finished, execute the installer. Administrator privileges might be required.
+				\end{enumerate}
+				
+				\begin{daWarningBox}
+					\begin{itemize}[leftmargin=*]
+						\setlength\itemsep{-0.1em}
+						\item Precompiled Windows Installer of the most recent TeXstudio version are only available for Windows 10, 64 bit. Older versions with support for different versions of Windows must be compiled from source.
+						\item  The portable version of TeXstudio might not have all the permissions that are required to run the \productName~utility.
+					\end{itemize}
+				\end{daWarningBox}
+			
+			\newpage
+			\subsubsection{Installation under Linux}
+				The installation of TeXstudio under Linux should always be done via the packet manager. There are also Linux Appimages available, which should in theory work on any flavor of Linux. 
+				\newline Please note that for the installation one needs \lstinline$sudo$ permissions or has to be \lstinline$root$.
+				\begin{longtable}[c]{ll}
+					\rowcolor{white}
+					\multicolumn{2}{l}{\textbf{Installation command:}}\\
+					\midrule
+					\endfirsthead
+					Debian: & \lstinline$sudo apt install texstudio$\\
+					Ubuntu: & \lstinline$sudo apt install texstudio$\\
+					Arch Linux: & \lstinline$sudo pacman -S texstudio$  \\
+					OpenSUSE: & \lstinline$zypper install texstudio$\\
+					\midrule
+				\end{longtable}
+				
+			\subsubsection{Installation under Mac OS}
+				\begin{enumerate}[label={\color{docartTurquoise}Step \arabic*:},leftmargin=*]
+					\setlength\itemsep{-0.2em}
+					\item Open \href{https://www.texstudio.org/}{https://www.texstudio.org/} in a web browser and scroll down/use the link to the \enquote{Download} section.
+					\item Chose the correct TeXstudio version for your operating system (recommendation: Qt5 for stability; the new Qt6 should only be required for extremely high resolution monitors).
+					\item After the download has finished, double click on the package file. It will unpack the disk image.
+					\item When the disk image is unpacked, double click on it to start TeXstudio.
+				\end{enumerate}
+				
+				\begin{daInfoBox}
+					The TeXstudio developers \enquote{do not have an Apple Developer\\ Account, so OS X may complain about an unidentified developer and deny opening} TeXstudio. Normally, there should be a pop-up asking one if one wants to execute software downloaded from the internet. If the pop-up does not appear or TeXstudio will even after confirmation not work, \enquote{open the context menu on the TeXstudio icon (Ctrl + Click) and select open}.\\[0.25cm]
+					\footnotesize parts in quotes from: Remark on TeXstudio website besides Mac OS image in Download section. 
+				\end{daInfoBox}
+			

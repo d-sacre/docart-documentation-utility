@@ -1,0 +1,18 @@
+%+++Complete+++
+\ifoot{%
+	\normalfont %
+	\scalebox{0.9}{%
+		\small \color{gray}\productName~Utility, \productVersion, \docRevText %
+	}%
+}
+\ofoot{%
+	\normalfont %
+	\scalebox{0.9}{%
+		\small \color{gray} License: %
+		\href{https://www.gnu.org/licenses/gpl-3.0.en.html}{GPLv3}%
+	}%
+}
+\cfoot{%
+  \normalfont\thepage %
+}
+%+++Complete+++

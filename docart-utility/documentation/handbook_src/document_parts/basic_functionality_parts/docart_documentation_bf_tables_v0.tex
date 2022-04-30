@@ -1,0 +1,144 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Tables}
+	\subsection{General Tables}
+		In \productVersion, \productName~provides the option to typeset tables directly from a comma separated csv-file. For example, the \mbox{csv-file} for the table with the Python module license data in \mbox{section \ref{sec:pythonModuleLicenses}} is shown in \mbox{listing \ref{lst:bf:rawcsv}}.
+		\daListingCaptionBelow{./tables/docART_python-module-dependencies_license.csv}{all}{lst:bf:rawcsv}{Contents of the text file \lstinline$python-module-dependencies_license.csv$, which is parsed by \LaTeX~to generate the following two tables.}
+		\lstset{style=LaTeX}
+		By calling \lstinline$\daTableDefaultFancyCaptionOff{FILEPATH}$, \LaTeX~typesets the \mbox{csv-file} found at\\ \lstinline$FILEPATH$ as a formatted table.
+		\daTableDefaultFancyCaptionOff{./tables/docART_python-module-dependencies_license.csv}
+		The first line in the \mbox{csv-file} is treated as the table header, which is typeset in bold and separated by a thin horizontal line from the rest of the table. All column contents are by default aligned to the left. Since (especially vertical) lines in tables are from a digital typesetting point considered as problematic, some visual content separation is achieved by highlighting every odd data row in gray. 
+		\begin{daWarningBox}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{-0.1em}
+				\item Please note that if the data in the \mbox{csv-file} needs to contain the following \LaTeX~special characters, they have to be escaped prior to loading the file with \LaTeX: {\ttfamily\small\textbackslash}, {\ttfamily\small\$}, {\ttfamily\small\&}, {\ttfamily\small\{}, {\ttfamily\small\}}, {\ttfamily\small\%}, {\ttfamily\small\textasciitilde}. Otherwise the compilation will halt and not produce a valid pdf-output.
+				\item The entirety of the \mbox{csv-file} may neither contain comments nor different amount of columns (especially first row is critical). 
+			\end{itemize}	
+		\end{daWarningBox} 
+		%+++defaultTableWithCaption+++
+		\daTableDefaultFancyCaptionBelow{%
+			./tables/docART_python-module-dependencies_license.csv%
+		}{%
+			tab:bf:defaultTableWithCaption%
+		}{%
+			The same licensing table as before, but this time with a caption 
+			at the bottom.%
+		}
+		%+++defaultTableWithCaption+++
+		A caption can be added to the bottom of the table by using\\[-1cm]		
+		\begin{center}
+			\lstinline$\daTableDefaultFancyCaptionBelow{FILEPATH}{LABEL}{CAPTION}$.
+		\end{center}
+		\vspace{-0.5cm}
+		For reference what the \lstinline$LABEL$ option can be used for, see \mbox{section \ref{sec:bf:labels}}. To generate \mbox{table \ref{tab:bf:defaultTableWithCaption}}, the \LaTeX~code in \mbox{listing \ref{lst:bf:tables:examples:default-with-caption-below}} has been used.
+		\daListingCaptionBelow{%
+			./document_parts/basic_functionality_parts/docart_documentation_bf_tables_v0.tex%
+		}{defaultTableWithCaption}{lst:bf:tables:examples:default-with-caption-below}{%
+			\LaTeX~code to generate  \mbox{table \ref{tab:bf:defaultTableWithCaption}}.%
+		}
+		All the \productName~table macros are designed such that they can process any desired number of columns, for each of which the alignment can be specified optionally. Additionally, the automatic page break features allows for unlimited numbers of rows with any kind of data string (\LaTeX~macros will be executed). These features are demonstrated in \mbox{table \ref{tab:bf:pagebreak:tables:caption-above}}.
+		%+++defaultTableCaptionAbovePageBreak+++
+		\daTableDefaultFancyCaptionAbove[lccl]{%
+			./tables/docART_table_auto-pagebreak-demo.csv%
+		}{tab:bf:pagebreak:tables:caption-above}{%
+			A fictitious server log table generated with automated page break and executed \LaTeX~macros.%
+		}
+		%+++defaultTableCaptionAbovePageBreak+++
+		\mbox{The table \ref{tab:bf:pagebreak:tables:caption-above}} is generated from the same \mbox{csv-file} shown in \mbox{listing \ref{lst:bf:csvWithCommands}}.
+		
+		\lstinputlisting[
+			caption={%
+				Contents of the \mbox{csv-file} \lstinline$docART_table_auto-pagebreak-demo.csv$, which is parsed by \LaTeX~to generate the \mbox{table \ref{tab:bf:pagebreak:tables:caption-above}}.
+			},%
+			label={lst:bf:csvWithCommands}%
+		]{./tables/docART_table_auto-pagebreak-demo.csv}
+		
+		Utilizing \lstinline$\daTableDefaultFancyCaptionAbove[COLALIGN]{FILEPATH}{LABEL}{CAPTION}$~for the generation of \mbox{table \ref{tab:bf:pagebreak:tables:caption-above}}, puts the caption at the beginning of the table. This placement is recommended for tables spanning multiple pages, since having to search for the caption is not very convenient. For better continuity, a reminder caption with the table number will be added at the top of each new page. In the following, the settings will be explored in detail on the basis of \mbox{listing \ref{lst:bf:tables:caption-above}}.
+		
+		\newpage
+		\daListingCaptionBelow{./document_parts/basic_functionality_parts/docart_documentation_bf_tables_v0.tex}{defaultTableCaptionAbovePageBreak}{lst:bf:tables:caption-above}{\LaTeX~code to generate \mbox{table \ref{tab:bf:pagebreak:tables:caption-above}}.}
+		For the example shown in \mbox{listing \ref{lst:bf:tables:caption-above}}, the macro \daListingInline{\\daTableDefaultFancyCaptionAbove}\newline
+		forces the caption to be typeset before the table. The optional \lstinline{COLALIGN} argument of \lstinline{lccl} aligns columns 1 and 4 to the left, whereas columns 2 and 3 get centered. Valid column alignment specifiers are \lstinline{l} (\enquote{left}), \lstinline{c} (\enquote{center}) and \lstinline{r} (\enquote{right}). Being an optional argument, there can be less column alignment specifiers provided than the number of actual columns of the table (with zero being a valid option). The column alignment specifiers will be applied onto the table columns from left to right until no more specifiers are available. The rest of the columns will then be automatically set to align left. 
+		\newline The mandatory arguments are self-explanatory: \lstinline{FILEPATH} specifies the path to the \mbox{csv-file} that should be typeset; the \lstinline{LABEL} allows to reference the table later on (see \mbox{section \ref{sec:bf:labels}}), whereas \lstinline{CAPTION} provides the content of the table caption. 
+		\newline All the in \productName, \productVersion~available table typesetting macros are summarized below.
+		
+		\begin{longtable}[c]{l}
+			\rowcolor{white}
+			\textbf{Table typesetting macros -- summary:}\\
+			\midrule
+			\endfirsthead
+			\lstinline$\daTableDefaultFancyCaptionOff[COLALIGN]{FILEPATH}$\\
+			\lstinline$\daTableDefaultFancyCaptionBelow[COLALIGN]{FILEPATH}{LABEL}{CAPTION}$\\
+			\lstinline$\daTableDefaultFancyCaptionAbove[COLALIGN]{FILEPATH}{LABEL}{CAPTION}$\\
+			\midrule
+			\rowcolor{white}
+			\multicolumn{1}{c}{\small Valid options for \lstinline$COLALIGN$: \lstinline$l$ (\enquote{left}), \lstinline$c$ (\enquote{center}), \lstinline$r$ (\enquote{right}).}
+		\end{longtable}
+		
+		\begin{daWarningBox}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{-0.1em}
+				\item In \productName, \productVersion~the table page break, reminder captions and \LaTeX~macro execution are completely automatic and cannot be influenced by the user.
+				\item Some \LaTeX~macros will not execute (properly) within a table. Sometimes special table-friendly versions of the macros have to be used instead.
+			\end{itemize}  
+		\end{daWarningBox}
+	
+	\newpage
+	\subsection{Specific Tables}
+	
+		\begin{daWarningBox}
+			This is an experimental feature in version \productVersion. The syntax and output might change completely. It is also possible that this feature will be dropped in future releases.
+		\end{daWarningBox}
+	
+		There is also the option to derive custom tailored tables from the default one. For example, \mbox{table \ref{tab:bf:tables:function-parameters}} shows how an automatic highlighted listing of data types could look like.
+		\lstset{language=c++}
+		%+++CodeSnippetTable+++
+		\lstset{style=C++}
+		\daTableCodeDescriptionCaptionBelow{%
+			./tables/docART_code-listing-table_c++-example.csv%
+		}{tab:bf:tables:function-parameters}{%
+			A simple table containing C++ code snippets.%
+		}
+		%+++CodeSnippetTable+++
+		\lstset{style=LaTeX}
+		\newline The \mbox{table \ref{tab:bf:tables:function-parameters}} is created with
+		\daListingCaptionOff{./document_parts/basic_functionality_parts/docart_documentation_bf_tables_v0.tex}{CodeSnippetTable} from the \mbox{csv-file} shown in \mbox{listing \ref{lst:bf:tables:code-table}}.
+		
+		\begin{daWarningBox}
+			In version \productVersion, the backend for the generation of a table with \lstinline$\\daTableCodeDescriptionCaptionBelow$ is different. Therefore, the output and behavior are slightly altered. 
+		\end{daWarningBox}
+		
+		\newpage
+		\lstset{language={}}
+		\lstinputlisting[
+		caption={%
+			Contents of the \mbox{csv-file} \lstinline$./tables/docART_code-listing-table_c++-example.csv$, which is parsed by \LaTeX~to generate the \mbox{table \ref{tab:bf:tables:function-parameters}}.
+		},captionpos=b,%
+		label={lst:bf:tables:code-table}%
+		]{./tables/docART_code-listing-table_c++-example.csv}
+		
+		For a detailed guide how to change the syntax highlighting, see \mbox{section \ref{sec:bf:listings:syntax-highlighting}}.
+		

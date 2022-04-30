@@ -1,0 +1,15 @@
+nullptr, Nullpointer
+void, Void
+bool, Boolean
+char, A single character
+wchar_t, Wide character
+short, A signed integer of at least 16 bit
+int, A signed integer of at least 16 bit
+long int, A signed integer of at least 32 bit
+long long int, A signed integer of at least 64 bit
+unsigned int, An unsigned integer of at least 16 bit
+float, A singel precision floting point number
+double, A double precision floting point number
+std::string, A standard string
+std::vector<uint8_t>, A standard vector of 8 bit integers
+std::list<std::string>, A standard list of standard strings

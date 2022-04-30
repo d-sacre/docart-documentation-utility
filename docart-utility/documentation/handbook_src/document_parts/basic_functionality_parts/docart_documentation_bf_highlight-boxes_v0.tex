@@ -1,0 +1,63 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%+++Complete+++
+\section{Highlight Boxes}
+	Sometimes it is necessary to highlight the importance of information. 
+	Changing the font type to bold or italics is not the best way. On the 
+	one hand, it breaks the reading flow and on the other hand font changes 
+	can be too subtle if the reader is just scanning the document very 
+	rapidly.
+	%+++warningBoxExample+++
+	% Generating a warning box.
+	\begin{daWarningBox}
+		This is a box designed to indicate a warning. Its design is by 
+		purpose very minimalistic, but can be altered to suit any needs. 
+		Additionally, it does not use the complete line width to provide a 
+		clear visual separation between continuous text and the boxes.
+	\end{daWarningBox}
+	%+++warningBoxExample+++
+	These boxes should only contain very little text and used sparsely; 
+	otherwise the highlighting effect wears off. By design, these boxes do 
+	not provide pagebreak functionality, which is intentional to force the 
+	user to fill these boxes with only the necessary content.
+	\newline The highlight box above was created using the following \LaTeX~
+	code:
+	\lstset{style=LaTeX}
+	\daListingCaptionBelow{./document_parts/basic_functionality_parts/docart_documentation_bf_highlight-boxes_v0.tex}{warningBoxExample}{lst:bf:highlight-boxes:warningBox}{%
+		The \LaTeX~code required for generating a warning box. %
+	}
+	
+	In \productVersion, \productName~provides a second custom environment 
+	called \daListingInline{daInfoBox}. Replacing \daListingInline{daWarningBox} with \daListingInline{daInfoBox} in the code snippet 
+	above, leads to the following output:
+	\begin{daInfoBox}
+		This is a box designed to indicate important information. Its design
+		is by purpose very minimalistic, but can be altered to suit any 
+		needs. Additionally, it does not use the complete line width to 
+		provide a clear visual separation between \mbox{continuous} text 
+		and the boxes.
+	\end{daInfoBox}
+%+++Complete+++

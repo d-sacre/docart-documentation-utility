@@ -1,0 +1,7 @@
+icon, ICONNAME, description
+\Huge\daIcon{warning}, \textcolor{orange}{\bfseries warning}, exclamation mark within yellow triangle
+\Huge\daIcon{info}, \textcolor{orange}{\bfseries info}, letter \enquote{i} within blue circle
+\Huge\daIcon[26pt]{varinfo}, \textcolor{orange}{\bfseries varinfo}, letter \enquote{i} within yellow circle
+\daIcon[18pt]{varwrench}, \textcolor{orange}{\bfseries varwrench}, a symbolic representation of a wrench
+\daIcon[18pt]{varpaperclip}, \textcolor{orange}{\bfseries varpaperclip}, a symbolic representation of a paperclip
+\Huge\daIcon{docART}, \textcolor{orange}{\bfseries docART}, icon version of the \productName~logo

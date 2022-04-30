@@ -1,0 +1,49 @@
+%+++Complete+++
+% !TeX program = lualatex 
+
+\documentclass{docart-utility/docart}
+
+\begin{document}
+	\daGenerateTitlepage
+	\tableofcontents
+	
+	\chapter{Figures}
+	\daFigureDefaultCaptionBelow[grid=3x4]{
+	./docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf;
+	./docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf;
+	./docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf;
+	./docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf;
+	./docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf;
+	./docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf;
+	./docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf;
+	./docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf;
+	./docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf;
+	./docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf;
+	./docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf;
+	./docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf;
+	}{fig:figures:test-figure}{%
+		Inclusion of the \productName~logo to confirm that the figure %
+		generating logic is working.%
+	}
+	
+	\chapter{Listing check: Self-listing}
+		\lstset{style=LaTeX}
+		\daListingCaptionBelow{docart_mwe.tex}{Complete}{%
+			lst:listing-check:self-listing%
+		}{%
+			Checking whether the listing functionality works properly by %
+			self-listing the \LaTeX~source code.%
+		}
+	
+	\chapter{References}
+		After two compilations, you should see a reference to 
+		\mbox{figure \ref{fig:figures:test-figure}} on 
+		\mbox{page \pageref{fig:figures:test-figure}} as well as to 
+		\mbox{listing \ref{lst:listing-check:self-listing}} on 
+		\mbox{page \pageref{lst:listing-check:self-listing}}.
+	
+	\chapter{Congratulations}
+		The compilation of the \productName~MWE to the pdf you are reading 
+		proves a successful  installation of the \mbox{\productName~Utility}.
+\end{document}
+%+++Complete+++

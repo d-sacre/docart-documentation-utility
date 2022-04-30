@@ -1,0 +1,59 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Installation \& Configuration (Quick Guide)}
+	\begin{daWarningBox}
+		The \productName~Utility uses shell-escape to provide its functionality. Please check BEFORE installing the utility, whether your IT security policy allows this. 
+	\end{daWarningBox}
+
+	To install the \productName~Utility, please do the following:\\
+	\begin{enumerate}[label={\textcolor{docartTurquoise}{Step \arabic*:}},leftmargin=*]
+		\setlength\itemsep{-0.2em}
+		\item Install a pdf Reader.\\
+			  \textcolor{gray}{Required for viewing the pdf output.}
+		\item Install Python 3.\\
+			\color{gray}
+			Recommended: \\
+			Download from \href{https://www.python.org/downloads/}{https://www.python.org/downloads/} (Windows),\\
+			package manager (Linux)
+			\normalcolor
+		\item Install the \LaTeX-Backend.\\
+			  \color{gray} Recommended: \lstinline$MikTeX$ (Windows), \lstinline$texlive$ (Linux)\\
+			  This step has to be done BEFORE installing optional \LaTeX~components like\\ TeXstudio. \normalcolor
+		\item Install the Optional Components (TeXstudio, etc.).
+		\item Download and Unpack the docART Utility.\\
+		\color{gray}
+			Download \lstinline$current-release$ branch from\\
+			\href{https://github.com/d-sacre/docart-documentation-utility}{https://github.com/d-sacre/docart-documentation-utility}
+		\normalcolor
+		\item Configuration (see \mbox{section \ref{chap:config}}): 
+		\begin{enumerate}[label={\textcolor{docartTurquoise}{Step 6.\arabic*:}},leftmargin=*]
+			\item \productName: Rename the main \LaTeX-file and customize the theme.\\ 
+			Optional: Delete the Handbook source code.
+			\item TeXstudio (optional): Enable shell-escape.
+		\end{enumerate}
+	\end{enumerate}
+	\vspace{0.5cm}
+	A detailed installation guide can be found in \mbox{appendix \ref{appendix:chap:installation}}.

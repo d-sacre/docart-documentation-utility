@@ -1,0 +1,7 @@
+%+++header+++
+\automark[section]{chapter}
+\chead{\leftmark}
+%+++header+++
+%+++footer+++
+\cfoot[\pagemark]{\pagemark}
+%+++footer+++

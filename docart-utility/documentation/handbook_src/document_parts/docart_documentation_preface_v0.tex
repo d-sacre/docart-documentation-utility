@@ -1,0 +1,38 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Preface: \TeX, \LaTeX, Lua\LaTeX~and the Documentation Problem in IT}
+	\label{chapter:preface}
+	Typesetting has been a complicated subject for centuries. In science, especially mathematics, many symbols are unique to the subject and bear little to no resemblance with standard Latin letters. This meant for typesetting a mathematical text, special typewriters were mandatory. With the advent of computers, the challenge of how to interface with them for typesetting purposes, format (\enquote{What You See Is What You Get} (WYSIWYG) versus \enquote{What You See Is What You Want} (WYSIWYW)) and in the end print text shifted the complexity to an even higher level. 
+	\newline A solution for mathematicians was \TeX, developed by Donald Knuth in the late 1970s. It shines especially when typesetting complex mathematical formulae, but due to its versatility and multilingual/multisymbol (Greek, Sanskrit, etc.) support quickly spread into other domains. Up to this date, \TeX~is considered to be one of the most sophisticated typographical systems. [\hyperref[preface:references]{1}]
+	\newline One downside of \TeX~was its complexity; or, to put it into other words, its user unfriendliness. In the early 1980s, Leslie Lamport [2] created \LaTeX, which is (from a very oversimplified point of view) a \TeX~macro collection focusing on user friendliness and ease of use. Over the years, it evolved further and further. 
+	Additional functionality has been implemented with the many derivatives like xe\LaTeX~and Lua\LaTeX, the latter one adding direct support for the Lua scripting language.
+	\newline The authors of the utility, both with a background in physics and programming, asked themselves the question, why \LaTeX~is not more widely used outside of science. The consistent template generation, high possible level of automation and its OpenSource license (\TeX~is in the public domain and therefor free of charge) should attract some interest. Its usefulness in computer science should also apply to the IT sector. Additionally, programmers should not be afraid of writing (a document in) code, right? 
+	\newline It turns out that most of the employees responsible for the documentations are not necessarily programmers themselves. Creating a document outside of a WYSIWYG application, where it is necessary to write \enquote{code}, frightens them, which in turn means they refuse vehemently a WYSIWYW solution if it gets proposed. The other scenario, even when programmers are responsible, is laziness: \enquote{We have always been doing it like this... It always worked somehow... Everybody uses **** (insert here the most famous word processor), why shouldn't we, too?}... All the merge conflicts (multiple people  working on the same document, overwriting the changes of the other; proprietary binary files of word processors not version controllable, ...) as well as inconsistency between the code shown in the documentation and the actual product that shipped (last-minute changes before the release not copied into the documentation, etc.) and the myriad of other not easily fixable problems are ignored. Not to mention the typesetting sins that many WYSIWYG programs create or let you get away with...\\[0.5cm]
+	\footnotesize
+	\label{preface:references}
+	[1] \href{https://en.wikipedia.org/wiki/TeX}{https://en.wikipedia.org/wiki/TeX}, last visited 2022-03-31
+	\newline [2] \href{https://en.wikipedia.org/wiki/LaTeX}{https://en.wikipedia.org/wiki/LaTeX}, last visited 2022-03-31
+	\normalsize

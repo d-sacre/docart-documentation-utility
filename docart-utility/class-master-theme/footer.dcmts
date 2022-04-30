@@ -1,0 +1,18 @@
+%+++Complete+++
+\ifoot{%
+	\normalfont %
+	\scalebox{0.9}{%
+		\small \color{gray}\productName~Utility, \productVersion, MWE %
+	}%
+}
+\ofoot{%
+	\normalfont %
+	\scalebox{0.9}{%
+		\small \color{gray} License of MWE: %
+		Public Domain%
+	}%
+}
+\cfoot{%
+  \normalfont\thepage %
+}
+%+++Complete+++

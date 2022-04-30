@@ -1,0 +1,18 @@
+date,time,time zone, event
+\textcolor{docartTurquoise}{2019/01/01}, \textcolor{docartTurquoise}{00:00}, \textcolor{docartTurquoise}{CET}, \textcolor{docartTurquoise}{server installation finished}
+2019/01/01, 00:05, CET, server successfully booted
+2019/01/01, 00:06, CET, starting \lstinline$xyz daemon$
+2019/01/01, 00:10, CET, admin login
+2019/12/31, 23:58, CET, \lstinline$sudo reboot$
+2019/12/31, 23:59, CET, server reboot
+\textcolor{docartTurquoise}{2020/01/01}, \textcolor{docartTurquoise}{00:00}, \textcolor{docartTurquoise}{CET}, \textcolor{docartTurquoise}{server back online}
+2020/01/01, 00:06, CET, starting \lstinline$xyz daemon$
+2020/01/01, 00:10, CET, admin login
+2020/12/31, 23:58, CET, \lstinline$sudo reboot$
+2020/12/31, 23:59, CET, server reboot
+\textcolor{docartTurquoise}{2021/01/01}, \textcolor{docartTurquoise}{00:00}, \textcolor{docartTurquoise}{CET}, \textcolor{docartTurquoise}{server back online}
+2021/01/01, 00:06, CET, starting \lstinline$xyz daemon$
+2021/01/01, 00:10, CET, admin login
+2021/12/31, 23:58, CET, \lstinline$sudo reboot$
+2021/12/31, 23:59, CET, server reboot
+

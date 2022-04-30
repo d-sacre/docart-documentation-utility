@@ -1,0 +1,288 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Listings of Programs and Files}
+	The \productName~Utility uses the \lstinline$listings$ package to provide the syntax highlighting functionality. 
+	The source code parsing is done with a Python script provided by the \productName~Utility developers.\\[-1cm]
+	
+	\subsection{Inline}
+		For including code snippets within the continuous text, the \productName~Utility provides the macro
+		\lstset{style=LaTeX}
+		\lstinline$\daListingInline[OPTIONS]{CONTENT}$. The \lstinline$CONTENT$ can be almost anything. 
+		Currently, syntax highlighting for more than 90 languages plus many dialects is available. For more details, 
+		especially how to change the syntax highlighting, see \mbox{section \ref{sec:bf:listings:syntax-highlighting}}.
+		\begin{daInfoBox}
+			The optional argument \lstinline$OPTIONS$ allows for passing additional settings to the current macro call. 
+			These settings are only applied locally and should be rarely necessary. The authors do not 
+			advise the usage of local options, which could lead to inconsistencies. 
+		\end{daInfoBox}
+	
+		\begin{daWarningBox}
+			In \productVersion, the usage of \LaTeX~special characters 
+			({\ttfamily\small\textbackslash}, {\ttfamily\small\$}, {\ttfamily\small\&}, 
+			{\ttfamily\small\{}, {\ttfamily\small\}}, {\ttfamily\small\%}, {\ttfamily\small\textasciitilde}) as \lstinline$CONTENT$ in 
+			\mbox{\lstinline$\\daListingInline\{CONTENT\}$} leads to compilation errors, especially if the macro is called in 
+			highlight boxes or tables. If the compilation halts and does not produce a valid pdf output, try using 
+			\lstinline$\\lstinline\{CONTENT\}$. The last resort is to use
+			\lstinline$\\lstinline\$CONTENT\$$ in combination with escaping the \LaTeX~special characters.
+		\end{daWarningBox}
+	
+	\subsection{Inblock}
+		The main design goal of the \productName~Utility is to provide automatic import functionality for source code into the finished documentation and keeping the listed code up to date. In addition, it is possible to load either the complete file or only parts of it (which is helpful for writing tutorials) by a tag system. 
+		\newline The labeling system that the \productName~Utility uses is inserted as a special comment into the source code of the file that should be loaded.
+		The structure of the \productName~listing comment is as follows:
+		\begin{center}
+			\lstinline$COMMENT DELIMITER TAG DELIMITER$
+		\end{center}
+		By default, the \lstinline$DELIMITER$ is set to \daTagDelim~(this can be changed by redefining \lstinline$\daTagDelim$ in \lstinline$./settings/listingsSettings.tex$). Examples on how to construct valid labels for different languages and delimiters can be found in \mbox{table \ref{tab:bf:listings:inblock:regex-labeling-examples}}.
+		
+		\newpage
+		\daTableDefaultFancyCaptionBelow[cccc]{./tables/docART_regex-labeling-examples.csv}{tab:bf:listings:inblock:regex-labeling-examples}{%
+			Examples for valid \productName~listing comments for different languages and delimiters.
+		}
+	
+		Since the \lstinline$DELIMITER$ is part of a comment, any combination of ASCII characters is valid.
+		\begin{daWarningBox}
+			\begin{itemize}[leftmargin=*]
+				\setlength\itemsep{-0.1em}
+				\item The \lstinline$DELIMITER$ has to be the same for all the imported files.
+				\item \productName~macros only need the 
+				\lstinline$TAG$ as input. The \lstinline$COMMENT$ as well as the
+				leading/trailing \lstinline$DELIMITER$ may not be provided. 
+			\end{itemize}
+		\end{daWarningBox}
+		To illustrate how the \productName~listing comments work, consider one wants to write a tutorial about the Python script presented in \mbox{listing \ref{lst:bf:listing:inblock:python-regex-example1:raw}}.
+		\lstset{style=Python}
+		\lstinputlisting[captionpos=b,caption={%
+			An example for the import of a Python script as a code listing. %
+			The listing shows the usage of the \productName~listing comments in the source code.%
+		},label={lst:bf:listing:inblock:python-regex-example1:raw}]{./examples/code/docart_regex-labels_examples/docart_regex-labels_example1.py}
+
+		\newpage
+		The Python script shown in \mbox{listing \ref{lst:bf:listing:inblock:python-regex-example1:raw}} contains two different \productName~listing comments\\ (\lstinline$#+++Step1+++$ and \lstinline$#+++Step1And2+++$), with the first one being present four times, whereas the latter one is only seen twice.
+		Calling 
+		\label{lst:bf:listings:inblock:example-no-caption}
+		%+++RegexLabelsExampleNoCaption+++
+		\daListingCaptionOff[style=LaTeX]{%
+			./document_parts/basic_functionality_parts/docart_documentation_bf_listings_v0.tex%
+		}{RegexLabelsExample1Step1}
+		%+++RegexLabelsExampleNoCaption+++
+		with the \lstinline$TAG$ part (\enquote{\lstinline$Step1$}) of the \productName~listing comment \lstinline$#+++Step1+++$ leads to the code listing with caption shown in \mbox{listing \ref{lst:bf:listing:inblock:python-regex-example1:step1}}.
+		\lstset{style=Python}
+		%+++RegexLabelsExample1Step1+++
+		\daListingCaptionBelow{%
+		  ./examples/code/docart_regex-labels_examples/docart_regex-labels_example1.py%
+		}{Step1}{lst:bf:listing:inblock:python-regex-example1:step1}{%
+			Resulting listing for the tag \enquote{\lstinline$Step1$}. %
+		}
+		%+++RegexLabelsExample1Step1+++
+		The resulting listing includes all the code which was sandwiched between two consecutive occurrences of \lstinline$#+++Step1+++$. If there are
+		integer multiple of 2 occurrences of the label, the listing will only contain the code inside those occurrences; the rest of the file will be omitted.
+		Calling  
+		\daListingCaptionOff[style=LaTeX]{./document_parts/basic_functionality_parts/docart_documentation_bf_listings_v0.tex}{RegexLabelsExample1Step1And2}
+		with the \lstinline$TAG$ part (\enquote{\lstinline$Step1And2$}) of the \productName~listing comment \lstinline$#+++Step1And2+++$ leads to the code listing with caption above as shown in \mbox{listing \ref{lst:bf:listing:inblock:python-regex-example1:step1And2}}.
+		\lstset{style=Python}
+		%+++RegexLabelsExample1Step1And2+++
+		\daListingCaptionAbove{%
+		  ./examples/code/docart_regex-labels_examples/docart_regex-labels_example1.py%
+		}{Step1And2}{lst:bf:listing:inblock:python-regex-example1:step1And2}{%
+			Resulting listing for the tag \enquote{\lstinline$Step1And2$}.%
+		}
+		%+++RegexLabelsExample1Step1And2+++
+		
+		\newpage
+		Comparing \mbox{listing \ref{lst:bf:listing:inblock:python-regex-example1:step1}} with \mbox{listing \ref{lst:bf:listing:inblock:python-regex-example1:step1And2}}, the latter listing shows more file content. Also worth mentioning is that all the \productName~listing comments are not displayed in the listing. 
+		\newline Besides using self-defined \productName~listing comments in the source code for partial loading, there is the option to process the complete file without needing to specify one. The \mbox{listing \ref{lst:bf:listing:inblock:python-regex-example1:all}} is generated by using \enquote{\lstinline[style=LaTeX]$all$} as a tag input. Like previously, only the pure source code with standard language comments (without \productName~listing comments) gets displaye.%, whereas the \productName~listing comments are omitted.
+		\daListingCaptionBelow{./examples/code/docart_regex-labels_examples/docart_regex-labels_example1.py}{all}{lst:bf:listing:inblock:python-regex-example1:all}{Resulting listing when using the \enquote{\lstinline[style=LaTeX]$all$} tag.}
+		Especially for writing tutorials it can be helpful to not only show different parts of a file, but also add additional information and formatting in the listing. A slight modification to the example makes this possible (see \mbox{listing \ref{lst:bf:listing:inblock:python-regex-example2:raw}}).
+		\lstset{style=Python}
+		\lstinputlisting[captionpos=b,caption={%
+			An example for the import of a Python script as a code listing. %
+			This file is a slight variation of the one shown in \mbox{listing \ref{lst:bf:listing:inblock:python-regex-example1:raw}}.%
+		},label={lst:bf:listing:inblock:python-regex-example2:raw}]{./examples/code/docart_regex-labels_examples/docart_regex-labels_example2.py}
+	
+		\newpage
+		Comparing the resulting code listings \mbox{\ref{lst:bf:listing:inblock:python-regex-example2:step1} to \ref{lst:bf:listing:inblock:python-regex-example2:all}} reveals that comments and newlines (\mbox{e.\,g.} \lstinline$#+++comment Step1+++# COMMENT$ and \lstinline$#+++newline Step1+++$) get only displayed when the label passed to the listing macro is identical. If multiple labels are specified as a comma separated list (\mbox{e.\,g.} \lstinline$#+++comment Step1And2, all +++$), the element is present in all the listings generated with matching labels. This is true for user-defined labels as well as \enquote{\lstinline[style=LaTeX]$all$}. 
+		\daListingCaptionBelow{./examples/code/docart_regex-labels_examples/docart_regex-labels_example2.py}{Step1}{lst:bf:listing:inblock:python-regex-example2:step1}{%
+			Resulting listing for the modified Python script when using the tag \enquote{\lstinline$Step1$}.	%
+		}
+		
+		\daListingCaptionBelow{./examples/code/docart_regex-labels_examples/docart_regex-labels_example2.py}{Step1And2}{lst:bf:listing:inblock:python-regex-example2:step1And2}{%
+			Resulting listing for the modified Python script when using the tag \enquote{\lstinline$Step1And2$}.	%
+		}
+		
+		\daListingCaptionBelow{./examples/code/docart_regex-labels_examples/docart_regex-labels_example2.py}{all}{lst:bf:listing:inblock:python-regex-example2:all}{%
+			Resulting listing for the modified Python script when using the tag \enquote{\lstinline[style=LaTeX]$all$}.	%
+		}
+	
+	\newpage
+	\lstset{style=LaTeX}
+	The authors recommend to always use listings with captions and labels (like generated by \lstinline$\daListingCaptionBelow$, \lstinline$\daListingCaptionAbove$), since this helps the reader to compare different steps due to referencing (see \mbox{section \ref{sec:bf:labels}}). Sometimes the code listing is too long/complicated to fit in the flow of the running text. For this scenario, the \productName~Utility provides the macro \lstinline$\daListingCaptionOff{FILE}{TAG}$, 
+	which provides the same functionality as the macro variants described before, but does neither generate a caption nor can be referenced. This option is used throughout the \productName~Utility documentation to show case more complicated \LaTeX~code snippets. An example would be on \mbox{page \pageref{lst:bf:listings:inblock:example-no-caption}}, where the syntax for \mbox{\lstinline$\\daListingCaptionBelow$} is shown. As reference, this specific syntax example was generated by
+	\daListingCaptionOff[style=LaTeX]{./document_parts/basic_functionality_parts/docart_documentation_bf_listings_v0.tex}{RegexLabelsExampleNoCaption}
+	For details about the optional argument \lstinline$style=LaTeX$, please see \mbox{section \ref{sec:bf:listings:syntax-highlighting}}.
+	\newline Besides the syntax highlighting, the listing commands provide automatic line break (inline + inblock) as well as automatic page break (inblock) functionality. Please note that the user has no control over these features (except adapting the loaded source code file). For in depth examples how the line and page break behave, refer to the source code listings in \mbox{appendix \ref{appendix:listing-source-code}}.
+		
+	\newpage
+	\subsection{Changing the Listing Syntax Highlighting}
+		\label{sec:bf:listings:syntax-highlighting}
+		\begin{daWarningBox}
+			The descriptions provided in this section are only valid for version \mbox{\productVersion}~and will definitely change in a future release.
+		\end{daWarningBox}
+		By default, the \productName~Utility supports syntax highlighting for 95 languages plus 66 dialects. An overview of the available languages is provided in \mbox{table \ref{tab:bf:listings:changing-syntax-highlighting:supported-default-languages}}, whereas the dialects are outlined in \mbox{table \ref{tab:bf:listing:syntax-highlighting:supported-dialects}}.
+		\newline To get a very basic syntax highlighting, one could use the macro\\[-1cm]
+		\begin{center}
+			\lstinline$\lstset{language=[DIALECT]LANGUAGE}$
+		\end{center}
+		\vspace{-0.5cm}
+		to select the correct lexer. It is highly recommended to specify the dialect when possible to obtain the best syntax highlighting possible.
+		\begin{daWarningBox}
+			The authors do not advise to specify the language, but instead recommend using styles (see \mbox{page \pageref{tab:bf:listing:syntax-highlighting:supported-dialects}}). The reasons being:\\[-0.75cm]
+			\begin{itemize}
+				\setlength\itemsep{-0.25em}
+				\item Without a style, the highlighting is limited to bold, italics, etc..
+				\item The amount of detected keywords is very limited.
+				\item Defining custom languages is tricky (custom styles easier).
+			\end{itemize}
+		\end{daWarningBox}
+		\daTableDefaultFancyCaptionBelow{./tables/docART_listing_predefined-languages.csv}{tab:bf:listings:changing-syntax-highlighting:supported-default-languages}{
+			Overview of all by the \productName~Utility supported languages for syntax highlighting.\\ 
+			Source: The Listings Package manual, 2020/03/24, Version 1.8d, p. 13, available at: \\ \href{https://ftp.tu-chemnitz.de/pub/tex/macros/latex/contrib/listings/listings.pdf}{https://ftp.tu-chemnitz.de/pub/tex/macros/latex/contrib/listings/listings.pdf}
+		}
+		
+		
+		\newpage
+		% macro for vertical lines
+		\def\arrvline{\hspace{-0.425cm}\kern\arraycolsep\vline\kern-\arraycolsep}
+		
+		% manipulating the table counter to display the correct value
+		\directlua{
+			local tablePrev = "\thetable"
+			local tableNew = 0 
+			tex.sprint("\\setcounter{table}{" .. tableNew .."}")
+		}
+		\begin{table}[h!]
+			\begin{minipage}[t]{0.5\linewidth}
+				\begin{longtable}[c]{lcc}
+					\rowcolor{white}
+					\textbf{language} & \textbf{dialects} & \textbf{default}\\
+					\midrule
+					\endfirsthead
+					\input{./tables/docART_listing_predefined-dialects.tex}
+				\end{longtable}
+			\end{minipage}
+			\begin{minipage}[t]{0.5\linewidth}
+				\begin{longtable}[c]{m{0.5mm}lcc}
+					\rowcolor{white}
+					& \textbf{language} & \textbf{dialects} & \textbf{default}\\
+					\midrule
+					\endfirsthead
+					\rowcolor{tableRowHighlightColor}
+					\input{./tables/docART_listing_predefined-dialects_table2.tex}
+				\end{longtable}
+			\end{minipage}
+			\vspace{-0.5cm}
+			\caption{%
+				Overview of all by the \productName~Utility supported language dialects for syntax highlighting.\\ 
+				Source: The Listings Package manual, 2020/03/24, Version 1.8d, p. 13, available at: \\ \href{https://ftp.tu-chemnitz.de/pub/tex/macros/latex/contrib/listings/listings.pdf}{https://ftp.tu-chemnitz.de/pub/tex/macros/latex/contrib/listings/listings.pdf}%
+			}
+			\label{tab:bf:listing:syntax-highlighting:supported-dialects}
+		\end{table}
+		In comparison to obtain the syntax highlighting by setting the \lstinline$language$ option, using \lstinline$style$ has many advantages:
+		\begin{itemize}
+			\setlength\itemsep{-0.25em}
+			\item \lstinline$style$ allows for complex highlighting schemes combining typefaces, fonts and color.
+			\item Additional keywords with different styling options can be added (allows to customize the lists of available keywords very easily).
+		\end{itemize}
+		The major drawback is that the language, dialect and keywords are set within the style definition, so there is no separation between functionality and styling. For the user this could mean multiple styles for the same language as well as copy-pasting settings between them.
+		\newline The \productName~Utility provides as default four styles: \lstinline$C++$, \lstinline$LaTeX$, \lstinline$Lua$ and \lstinline$Python$. They can be set by \lstinline$\lstset{style=STYLE}$ and are used for syntax highlighting until another style is set. The following \mbox{listings \ref{lst:bf:listings:syntax-highlighting:example:cpp}} to \ref{lst:bf:listings:syntax-highlighting:example:python} showcase a simple \enquote{Hello World}-example for all the default styles. For additional, more complicated examples, see \mbox{appendix \ref{appendix:listing-source-code}}. 
+		
+		\newpage
+		\lstset{style=C++}
+		\daListingCaptionBelow{./examples/code/docart_syntax-highlighting_examples/docart_syntax-highlighting-example_c++.cpp}{all}{lst:bf:listings:syntax-highlighting:example:cpp}
+		{%
+			An \enquote{Hello World}-example written in C++ showcasing the default \productName~\lstinline$C++$ syntax highlighting style.%
+		}
+		\lstset{style=LaTeX}
+		\daListingCaptionBelow{./examples/code/docart_syntax-highlighting_examples/docart_syntax-highlighting-example_latex.tex}{all}{lst:bf:listings:syntax-highlighting:example:latex}{%
+			An \enquote{Hello World}-example written in \LaTeX~showcasing the default \productName~\lstinline$LaTeX$ syntax highlighting style.%
+		}
+		\lstset{style=Lua}
+		\daListingCaptionBelow{./examples/code/docart_syntax-highlighting_examples/docart_syntax-highlighting-example_lua.lua}{all}{lst:bf:listings:syntax-highlighting:example:lua}{%
+			An \enquote{Hello World}-example written in Lua showcasing the default \productName~\lstinline$Lua$ syntax highlighting style.%
+		}
+		\lstset{style=Python}
+		\daListingCaptionBelow{./examples/code/docart_syntax-highlighting_examples/docart_syntax-highlighting-example_python.py}{all}{lst:bf:listings:syntax-highlighting:example:python}{%
+			An \enquote{Hello World}-example written in Python showcasing the default \productName~\lstinline$Python$ syntax highlighting style.%
+		}
+
+	\newpage
+	\subsection{Listings: Summary}
+		The \productName~Utility, version \productVersion, is built upon/provides wrapper macros for the \lstinline$listings$ package.
+		\lstset{style=LaTeX}
+		\subsubsection*{Available macros:}
+			\vspace{-0.25cm}
+			\begin{itemize}
+				\item Inline: (automatic line break)
+					\begin{itemize}
+						\setlength\itemsep{-0.25em}
+						\item \lstinline$\daListingInline[OPTIONS]{CODE}$
+						\item Special cases (environments, etc.): \lstinline{\lstinline[OPTIONS]$CODE$} with escaping of \LaTeX~special characters.
+					\end{itemize}
+				\item Inblock: (automatic line + page break)\\
+				 \lstinline$\daListingCaptionOff[OPTIONS]{FILE}{TAG}$\\ \lstinline$\daListingCaptionBelow[OPTIONS]{FILE}{TAG}{LABEL}{CAPTION}$\\
+				 \lstinline$\daListingCaptionAbove[OPTIONS]{FILE}{TAG}{LABEL}{CAPTION}$
+			\end{itemize}
+		
+		\subsubsection*{List sections from a file with \productName~listing comments:}
+			\vspace{-0.25cm}
+			\begin{itemize}
+				\setlength\itemsep{-0.125em}
+				\item \productName~listing comment syntax:\\
+				\lstinline$COMMENT DELIMITER TAG DELIMITER$,\\
+				\mbox{e.\,g.} \lstinline$#+++LABEL+++$ for Python with the default \productName~listing comment delimiter \enquote{\lstinline$+++$}.
+				\item \productName~listing comment options:
+				\begin{itemize}
+					\item Comments:\\
+						\mbox{e.\,g.} \lstinline$#+++comment LABEL1, ..., LABELN+++ # A comment$
+					\item Newlines:\\
+						\mbox{e.\,g.} \lstinline$#+++newline LABEL+++$
+				\end{itemize}
+				\item Special tag: Passing \enquote{\lstinline$all$} as \lstinline$TAG$ generates a listing of the complete file.
+				\item All \productName~listing comments will be removed from the listing.
+			\end{itemize}
+		
+		\subsubsection{Syntax highlighting:}
+			\vspace{-0.25cm}
+			\begin{itemize}
+				\setlength\itemsep{-0.125em}
+				\item Setting the language (lexer):\\
+				\lstinline$\lstset{language=[DIALECT]LANGUAGE}$
+				\item Setting a style (lexer + highlighting scheme + additional keywords):\\
+				\lstinline$\lstset{style=STYLE}$
+				\item Pre-made \productName~styles for C++, \LaTeX, Lua, Python. 
+				\item Additional keywords can be defined in the style definition.
+			\end{itemize}
+		

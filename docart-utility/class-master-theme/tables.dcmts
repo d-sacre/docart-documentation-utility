@@ -1,0 +1,111 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%+++Complete+++
+\def\tableborder{1pt}
+
+\NewDocumentCommand{\defaultFancyTableTEMPLATE}{mmmmmm}{
+	\directlua{%
+		local colAlignSTRING = "#1"
+		local filename = "\luaescapestring{\detokenize{#2}}"
+		local label = "\luaescapestring{\detokenize{#3}}"
+		local caption = "\luaescapestring{\detokenize{#4}}"
+		local captionStatus = "#5"
+		%
+		local typeset = require("./docart-utility/scripts/lua/typesetTables")
+		parseAndGenerateTablePreambleAndMetric(filename, colAlignSTRING, label, caption, captionStatus)
+	}
+		% begin of longtable environment (needs to be printed, otherwise colAlign cannot be set procedurally)
+		\captionAndLabelAbove
+		\rowcolor{white}
+		\tableHeader\\
+		\midrule
+		\endfirsthead
+		\rowcolor{white}
+		\multicolumn{\columns}{c}{\small\color{gray} \headCaption}\\[0.25cm]
+		\rowcolor{white}
+		\tableHeader\\
+		\midrule
+		\endhead
+		\midrule
+		\rowcolor{white}
+		\multicolumn{\columns}{c}{\small\color{gray}Table continued on next page.}\\
+		\endfoot
+		\rowcolor{white}
+		\midrule
+		\rowcolor{white}
+		\captionAndLabelBelow 
+		\endlastfoot
+		\directlua{%
+			local filename = "\filename"
+			local maxRows = "\maxRows"
+			local typeset = require("./docart-utility/scripts/lua/typesetTables")
+			parseAndGenerateTableData(filename,maxRows)
+		}% 	
+	\end{longtable}
+} % #1 = col algin data, #2 = filename, #3 = label, #4 = caption, #5 = caption status, #6 = column modifiers (not implemented yet)
+
+\NewDocumentCommand{\daTableDefaultFancyCaptionOff}{O{default} m}{
+	\defaultFancyTableTEMPLATE{#1}{#2}{}{}{nocaption}{}
+}
+
+\NewDocumentCommand{\daTableDefaultFancyCaptionBelow}{O{default} mmm}{
+	\defaultFancyTableTEMPLATE{#1}{#2}{#3}{#4}{captionbelow}{}
+}
+
+\NewDocumentCommand{\daTableDefaultFancyCaptionAbove}{O{default} mmm}{
+	\defaultFancyTableTEMPLATE{#1}{#2}{#3}{#4}{captionabove}{}
+}
+
+\newcommand{\daTableCodeDescriptionCaptionBelow}[3]{
+	\begin{table}[h!]
+	\centering
+	\pgfplotstabletypeset[%
+		col sep=comma,%
+		header=false,
+		every head row/.style={ 
+		output empty row,
+		before row={%
+		\textbf{data type} & \textbf{description}\\
+		},
+		after row={%
+		\noalign{\hrule height \tableborder}%
+		},
+		},
+		columns/0/.style={%
+		string type,%
+		column type=r,%
+		postproc cell content/.append style={
+		/pgfplots/table/@cell content/.add={\lstinline$}{$},
+		},
+		},
+		columns/1/.style={string type, column type=l},
+		%every even row/.style={before row={\rowcolor[gray]{0.9}}},%
+	]{#1}
+	\caption{#3}
+	\label{#2}
+	\end{table} 
+}
+%+++Complete+++

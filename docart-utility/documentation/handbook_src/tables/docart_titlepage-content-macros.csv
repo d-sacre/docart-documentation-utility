@@ -1,0 +1,7 @@
+macro, postion, recommended
+\lstinline$\daTitlepageTitle$, top most entry, document title
+\lstinline$\daTitlepageLogo$, below title, product/company logo
+\lstinline$\daTitlepageDescription$, below logo, short product description
+\lstinline$\daTitlepageAuthor$, below description, author of document
+\lstinline$\daTitlepageDocumentInformation$, below author, type of document/version
+\lstinline$\daTitlepageLicense$, entry at bottom, licensing information

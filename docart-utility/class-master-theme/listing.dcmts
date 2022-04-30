@@ -1,0 +1,98 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%+++Complete+++
+\newcommand{\listingCaptionsContentSetting}{custom}
+
+\NewDocumentCommand{\daListingTEMPLATE}{O{} +mmmm}{%
+	\directlua{%
+		%%%%%%%%% Loading external data to lua local %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		local sha = require("./docart-utility/scripts/lua/sha2")% loading hashing library
+		local settings = "\luaescapestring{\detokenize{#1}}" % detokenize/escape settings argument 
+		local filename = "#2" % copy code filename to lua 
+		local label = "\luaescapestring{\detokenize{#4}}" % detokenize/escape label argument 
+		local caption = "\luaescapestring{\detokenize{#5}}" % detokenize/escape caption argument 
+		local regexLabel = "#3" % copy code regex label to lua
+		local regexLabelDelim =  "\luaescapestring{\daTagDelim}" % copy label delim to lua
+		%%%%%%%%% Hardcode output directory and output file ending %%%%%%%%%%%%%%%%%%%%%%%%%
+		local lstPath = "./TMP/lst/" % setting output directory
+		local fileEnding = ".lst" % setting output file ending
+		%%%%%%%%% Generate hash, ofilename and command strings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		local hashResult = sha.sha256(filename) % hashing the code file name
+		local ofilename = lstPath .. hashResult  .. "_" .. regexLabel .. fileEnding
+		local pythonCommand = "\\ShellEscape{python ./docart-utility/scripts/python/createTempListingFile.py " .. filename .. " " .. regexLabel .. " " .. regexLabelDelim .. "}" % constructing the python call
+		local lstCommand ="\\lstinputlisting[caption={" .. caption .. "}, label={".. label .. "}" .. settings .."]{".. ofilename .. "}" % constructing the LaTeX listing command
+		%%%%%%%%% Print and execute command strings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		tex.sprint(pythonCommand) % print and let LaTeX execute python command
+		tex.sprint(lstCommand) % print and let LaTeX execute listing command
+	}%
+}%
+
+\NewDocumentCommand{\daListingCaptionAbove}{O{} +mmmm}{%
+	\daListingTEMPLATE[,captionpos=t, #1]{#2}{#3}{#4}{#5}
+}
+
+\NewDocumentCommand{\daListingCaptionBelow}{O{} +mmmm}{%
+	\daListingTEMPLATE[,captionpos=b, #1]{#2}{#3}{#4}{#5}
+}
+
+
+\NewDocumentCommand{\daListingCaptionOff}{O{} +mm}{%
+	\directlua{%
+		%%%%%%%%% Loading external data to lua local %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		local sha = require("./docart-utility/scripts/lua/sha2")% loading hashing library
+		local settings = "\luaescapestring{\detokenize{#1}}" % detokenize/escape settings argument 
+		local filename = "#2" % copy code filename to lua 
+		local regexLabel = "#3" % copy code regex label to lua
+		local regexLabelDelim =  "\luaescapestring{\daTagDelim}" % copy label delim to lua
+		%%%%%%%%% Hardcode output directory and output file ending %%%%%%%%%%%%%%%%%%%%%%%%%
+		local lstPath = "./TMP/lst/" % setting output directory
+		local fileEnding = ".lst" % setting output file ending
+		%%%%%%%%% Generate hash, ofilename and command strings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		local hashResult = sha.sha256(filename) % hashing the code file name
+		local ofilename = lstPath .. hashResult  .. "_" .. regexLabel .. fileEnding
+		local pythonCommand = "\\ShellEscape{python ./docart-utility/scripts/python/createTempListingFile.py " .. filename .. " " .. regexLabel .. " " .. regexLabelDelim .. "}" % constructing the python call
+		local lstCommand ="\\lstinputlisting[" .. settings .."]{".. ofilename .. "}" % constructing the LaTeX listing command
+		%%%%%%%%% Print and execute command strings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		tex.sprint(pythonCommand) % print and let LaTeX execute python command
+		tex.sprint(lstCommand) % print and let LateX execute listing command
+	}%
+}%
+
+
+\newcommand{\daListingInline}[2][]{
+	\lstinline[%
+		%columns=fixed,%
+		%backgroundcolor=\color{daListingColorBackground},
+		commentstyle=\color{daListingColorComment},
+		directivestyle={\color{lime}\bfseries},
+		numberstyle=\tiny\color{daListingColorLineNumbers},
+		stringstyle={\bfseries\color{daListingColorString}},
+		basicstyle=\ttfamily\footnotesize,
+		#1%
+	]$#2$ % additional settings get ignored???
+	\xspace
+} % does not accept LaTeX macros due to \; \lstinline$$ has to be used manually
+%+++Complete+++

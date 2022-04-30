@@ -1,0 +1,189 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Adapting the Default \productName~Theme}
+	\label{chap:adapting-default-theme}
+	One of the design goals of the \productName~Utility was to provide a tool that is almost ready to use and only needs minimal setup. If one does not want to change the colors, page margin/type area or fonts, all that has to be done is make the changes outlined in \mbox{section \ref{sec:adapting-default-theme:project-details}}, \mbox{section \ref{sec:adapting-default-theme:pdf-metadata}}, \mbox{section \ref{subsec:adt:page-setup:title-page}} and \mbox{section \ref{subsec:adt:page-setup:header-and-footer}}.
+	
+	\vspace{-2.5cm}
+	\section{Project Details}
+		\label{sec:adapting-default-theme:project-details}
+		For changing the project details and pdf metadata information, navigate to the \lstinline$./settings/$ folder. The file \lstinline$projectDetails.tex$ contains the following macros:
+		\lstset{style=LaTeX}
+		\begin{longtable}[c]{ll}
+			\rowcolor{white}
+			\textbf{macro} & \textbf{description}\\
+			\midrule
+			\endfirsthead
+			\rowcolor{tableRowHighlightColor}
+			\lstinline$\productName$ & A macro storing the product name\\
+			\rowcolor{white}
+			\lstinline$\releaseState$ & A macro storing the release status of the product\\ 
+			& (alpha, beta, release, ...) \\
+			\lstinline$\releaseDate$ & A macro storing the release date of the product\\
+			\lstinline$\productVersion$ & A macro storing the product version\\
+			\rowcolor{white}
+			& default: \lstinline$\releaseState-\releaseDate$\\
+			\rowcolor{tableRowHighlightColor}
+			\lstinline$\documentRevision$ & A macro storing the number of documentation revisions\\
+			\rowcolor{white}
+			\lstinline$\docRevText$ & A macro storing a version of the number of\\
+			&  documentation revisions with a string prefix\\
+			\rowcolor{white}
+			& default: \lstinline$Doc. Rev. \documentRevision$\\
+			\midrule
+		\end{longtable}
+		
+		\begin{daInfoBox}
+			The macros defined in \lstinline$projectDetails.tex$ are not mandatory for the functionality of the \productName~Utility. They are designed to facilitate the usage of important, repeating expressions and to ensure consistency. If one decides not to use them, special care has to be taken during the configurations outlined in \mbox{section \ref{subsec:adt:page-setup:title-page}} and \mbox{section \ref{subsec:adt:page-setup:header-and-footer}}; otherwise the document may not compile.  
+		\end{daInfoBox}
+		The authors highly encourage the users of the \productName~Utility to use these macros and create new ones as needed. New project dependent macros should be placed in\\ \mbox{\lstinline$./settings/projectDetails.tex$}, since this is one of the first settings files to be loaded at compile time. This allows other files and macros to inherit the changes.
+	
+	\newpage
+	\section{pdf Metadata}
+		\label{sec:adapting-default-theme:pdf-metadata}
+		Although not strictly necessary, the authors highly recommend setting pdf metadata information. This not only helps the (pdf) reader, but also the documentation author(s) to keep track of changes without solely relying upon file names.
+		\begin{longtable}[c]{ll}
+			\rowcolor{white}
+			\textbf{metadata tag} & \textbf{description}\\
+			\midrule
+			\endfirsthead
+			\rowcolor{tableRowHighlightColor}
+			\lstinline$pdftitle$ & default: \lstinline$\productName~Documentation$\\
+			\rowcolor{white}
+			\lstinline$pdfsubject$ & default:\\
+			\rowcolor{white}
+			& \lstinline$Documentation for \productName, \productVersion, \docRevText$\\
+			\rowcolor{tableRowHighlightColor}
+			\lstinline$pdfauthor$ & \color{red} default: \lstinline$\productName~Utililty$\\
+			\rowcolor{white}
+			\lstinline$pdfkeywords$ & default: \\
+			\rowcolor{white}
+			& \lstinline$Documentation, coding, \LaTeX, \productName$\\
+			\rowcolor{tableRowHighlightColor}
+			\lstinline$pdfcreator$ & default:\\
+			& \lstinline$docART Utility, alpha-2022-04-30;$\\
+			\rowcolor{tableRowHighlightColor}
+			& \lstinline$Backend: (Lua)\LaTeX~with hyperref$\\
+			\midrule
+		\end{longtable}
+	
+		\begin{daWarningBox}
+			If one decided neither to use project detail macros (see \mbox{section \ref{sec:adapting-default-theme:project-details}}) nor pdf metadata, one has to delete the contents of the file\\ \lstinline$./settings/pdfMetadata.tex$, but not the file itself!
+		\end{daWarningBox}
+	
+		\begin{daInfoBox}
+			Custom pdf metadata keywords are not possible with \productName, \productVersion, and probably with plain \mbox{(Lua)\LaTeX}~without post-processing in general. The other options \lstinline$\\pdfinfo$ or loading a \mbox{XMP-file} via the \lstinline$hyperxmp$-usepackage provide some additional keywords, but also lack support for custom entries.
+		\end{daInfoBox}
+	
+	\newpage
+	\section{Page Setup}
+		\subsection{Title Page}
+			\label{subsec:adt:page-setup:title-page}
+			The title page generated by the \productName~Utility is defined within the \lstinline$\daGenerateTitlepage$ macro. The user can change the title page content by modifying the macro definitions in \lstinline$./settings/titlepageContent.tex$. The available macros with a short description are listed below.
+			\lstset{style=LaTeX}
+			\daTableDefaultFancyCaptionOff[lll]{./tables/docart_titlepage-content-macros.csv}
+			If \mbox{e.\,g.} a different layout is required, the \lstinline$\daGenerateTitlepage$ macro definition can be changed by editing the file \lstinline$./docart-utility/class-master-theme/titlepage.dcmts$, which is shown in \mbox{listing \ref{lst:adt:page-setup:title-page:titlepage-dcmts-example-with-comment}}. 
+			\lstset{style=LaTeX}
+			\daListingCaptionBelow{./docart-utility/class-master-theme/titlepage.dcmts}{changeTitlepageExample}{lst:adt:page-setup:title-page:titlepage-dcmts-example-with-comment}{Content of the file \lstinline$./docart-utility/class-master-theme/titlepage.dcmts$.}
+			The \lstinline$TITLE PAGE CONTENT$ can be virtually anything. However, for most use cases, simply adapting the example file by replacing the content should be enough.
+			\begin{daWarningBox}
+				Making more substantial changes to the title page requires basic knowledge of \LaTeX. In the experience of the authors, a web search for \enquote{LaTeX title page} will lead to easily adaptable results. A good source is the Overleaf guide \href{https://www.overleaf.com/learn/latex/How_to_Write_a_Thesis_in_LaTeX_(Part_5)\%3A_Customising_Your_Title_Page_and_Abstract}{\enquote{How to Write a Thesis in LaTeX},\\ part 5}.
+			\end{daWarningBox}
+		
+		\newpage
+		\subsection{Margins and Type Area}
+			\vspace{-0.25cm}
+			\begin{daWarningBox}
+				In version \productVersion, the page setup is hard coded in the \productName~\LaTeX~class file. If one has some \LaTeX~experience, it can be changed by manipulating the \lstinline$geometry$-package options. 
+			\end{daWarningBox}
+		
+		\subsection{Page Header and Footer}
+			\label{subsec:adt:page-setup:header-and-footer}
+			The page header/footer are defined in \lstinline$./docart-utility/class-master-theme/header.dcmts$ and \lstinline$./docart-utility/class-master-theme/footer.dcmts$ respectively.
+			The \mbox{table \ref{tab:adt:page-setup:header-and-footer:header-footer-options}} gives an overview of the options provided by the \lstinline$scrlayer-scrpage$ package, on which the \mbox{\productName} header/footer are built upon.
+			\daTableDefaultFancyCaptionBelow{./tables/docART_header-footer_macro-overview.csv}{tab:adt:page-setup:header-and-footer:header-footer-options}{Overview of page header and footer options (location only valid for single page layouts).}
+			The content of any header or footer element can be as complex as one wishes. A possibility is to repeat the section title in the center head and have the page number as center foot. This can be achieved by changing \lstinline$./docart-utility/class-master-theme/header.dcmts$ to
+			\daListingCaptionOff{./examples/docART-styles/docART_style-example_chap-in-chead_pagemark-cfoot.dcmts}{header}
+			\vspace{-0.25cm}
+			and \lstinline$./docart-utility/class-master-theme/footer.dcmts$ to
+			\daListingCaptionOff{./examples/docART-styles/docART_style-example_chap-in-chead_pagemark-cfoot.dcmts}{footer}
+			
+			\begin{daWarningBox}
+				The content in header and footer does not have automatic line break functionality. If the header/footer are comprised of multiple elements and long chapter/section titles are used, overlaps of content can occur.
+			\end{daWarningBox}
+		
+			\begin{daInfoBox}
+				For more control over the alignment of header/footer elements, the authors recommend the usage of TikZ. However, this requires experience with \LaTeX~and familiarity with the basics of TikZ.
+			\end{daInfoBox}
+	
+	\newpage
+	\section{Fonts}
+		The fonts can be changed in\,\mbox{\lstinline$./docart-utility/class-master-theme/fontSettings.dcmts$.}
+		\daListingCaptionBelow{./docart-utility/class-master-theme/fontSettings.dcmts}{all}{lst:adt:fonts:default-fontsettings-dcmts}{%
+			Overview of the default \productName~Utility font settings located at\\ \lstinline$./docart-utility/class-master-theme/fontSettings.dcmts$.%
+		}
+		The \productName~Utility supports the otf- as well as the ttf-font-format. It is required to provide the path to the font file (in this case \lstinline$./docart-utility/fonts/$) as well as the file names for normal, bold and italic typefaces like shown in \mbox{listing \ref{lst:adt:fonts:default-fontsettings-dcmts}}.
+	
+		\begin{daWarningBox}
+			In version \productVersion, the way the \productName~\LaTeX~class is written only supports otf/ttf-fonts that have separate files for normal, bold and italic typefaces. Additionally, the default font size is fixed in the \productName~class file to \mbox{12 pt}. 
+		\end{daWarningBox}
+	
+		\begin{daInfoBox}
+			Despite being possible, the authors of the \productName~Utility do not recommend to use system fonts. First of all, if collaborators are using different (versions of) operating systems with different software installed, the list of available fonts will not be consistent. Secondly, some system fonts do not cause loading errors and consequently preventing a successful compilation.
+		\end{daInfoBox}
+		For the main text font (set by \lstinline$\setmainfont$), a sans-serif type is recommended, whereas for the code snippets a monospace font is the best choice. By default, the \productName~Utility uses \enquote{TeX Gyre Heros} as main text font and \enquote{Hack} for code snippets/listings.
+	
+		\begin{longtable}[c]{lc}
+			\textbf{font} & \textbf{example}\\
+			\midrule
+			\endfirsthead
+			\rowcolor{tableRowHighlightColor}
+			\enquote{TeX Gyre Heros}: & The quick brown fox jumps over the lazy dog.\\
+			& Aa Bb Cc Ii Jj Ll Oo 0123456789 \\
+			\enquote{Hack}: & \lstinline$ The quick brown fox jumps over the lazy dog.$\\
+			\rowcolor{white}
+			& \lstinline$Aa Bb Cc Ii Jj Ll Oo 0123456789$\\
+			\midrule
+		\end{longtable}
+		
+	\newpage
+	\section{Colors}
+		The color settings are split into two files: The file \lstinline$./settings/colorSettings.tex$ is currently intended for changes by the end user (like adding custom colors or changing the listing color scheme). The file \lstinline$./docart-utility/class-master-theme/default-colors.dcmts$ is primarily intended for \productName~theme maintainer, since it determines the fundamental color scheme of the generated document.
+		\begin{daWarningBox}
+			The split of the settings and the following explanations are only correct for \productVersion~and will change in future releases.
+		\end{daWarningBox}
+		New colors can be defined by \lstinline$\definecolor{NAME}{MODEL}{VALUE}$.
+		The authors recommend to use \lstinline$rgb$ or \lstinline$HTML$ as color models. Creating a name variant of an already existing color is achieved by \lstinline$\colorlet{NEW COLOR}{EXISTING COLOR}$.
+		
+		\subsubsection{Changing the default \productName~color scheme:}
+			\begin{itemize}
+				\item To change the existing code snippet color scheme, adapt the color definitions of\\ 
+				\lstinline$daListingColorLineNumbers$, \lstinline$daListingColorComment$, \lstinline$daListingColorBackground$ and \lstinline$daListingColorString$ in\\ \lstinline$./settings/colorSettings.tex$.
+				\item To modify the table highlighting color, change the definition of \lstinline$tableRowHighlightColor$ in \lstinline$./docart-utility/class-master-theme/default-colors.dcmts$.
+				\item Adapting the color of headlines and table-of-content entries, modify the value of\\ 
+				\lstinline$headlinecolor$ in \lstinline$./docart-utility/class-master-theme/default-colors.dcmts$.
+			\end{itemize}
+		

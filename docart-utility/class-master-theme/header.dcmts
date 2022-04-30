@@ -1,0 +1,15 @@
+%+++Complete+++
+\ihead{}
+\ohead{}
+\chead{
+	\tikz{
+		\node[inner sep=0, outer sep=0,anchor=west](logo) at (0,0){
+				\includegraphics[width=1.5cm]{docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf}
+		};
+		\node[text=orange,anchor=west,align=center,font=\normalfont](text) at ($(logo.east)+(5em,0)$){\Large\bfseries \productName~\Large\bfseries Utility MWE};
+		\node[inner sep=0, outer sep=0,anchor=west](logo2) at ($(text.east)+(5em,0)$){
+				\includegraphics[width=1.5cm]{docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf}
+		};
+	}
+}
+%+++Complete+++

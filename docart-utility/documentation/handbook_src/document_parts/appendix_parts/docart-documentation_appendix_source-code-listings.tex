@@ -1,0 +1,93 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\chapter{Listing of Source Code}
+	\label{appendix:listing-source-code}
+	\section{\productName~Utility}
+		\subsection{\LaTeX~Class}
+			\lstset{style=LaTeX}
+			\daListingTEMPLATE{./docart-utility/docart.cls}{Complete}{lst:source:utility:latex-class}{Contents of the \productName~\LaTeX~class file.}
+		
+		\subsection{Python Scripts}
+			\lstset{style=Python}
+			\daListingTEMPLATE{./docart-utility/scripts/python/fileTime.py}{Complete}{lst:source:utility:python:listingfile1}{Contents of \lstinline$fileTime.py$.}
+
+			\daListingTEMPLATE{./docart-utility/scripts/python/createTempListingFile.py}{Complete}{lst:source:utility:python:listingfile2}{Contents of \lstinline$createTempListingFile.py$.}
+		
+		\subsection{Lua Scripts}
+			\lstset{style=Lua}
+			\daListingTEMPLATE{./docart-utility/scripts/lua/typesetFigures.lua}{Complete}{lst:source:utility:lua:typesetFigures}{Contents of \lstinline$typesetFigures.lua$.}
+			\daListingTEMPLATE{./docart-utility/scripts/lua/typesetTables.lua}{Complete}{lst:source:utility:lua:typesetTables}{Contents of \lstinline$typesetTables.lua$.}
+		
+	
+	\section{\productName~Utility Handbook}
+	
+		\subsection{\productName~Theme Files}
+			\lstset{style=LaTeX}
+			\foreach \fileName/\labelString/\captionContent/\additionalPagebreak in {%
+				{default-colors.dcmts}/{colors}/{Content of the default \productName~theme file for color settings.}/{},%
+				{figures.dcmts}/{figures}/{Content of the default \productName~theme file for figures.}/{},%
+				{fontSettings.dcmts}/{fonts}/{Content of the default \productName~theme file for font settings.}/{},%
+				{footer.dcmts}/{footer}/{Content of the default \productName~theme file for footer settings.}/{},%
+				{header.dcmts}/{header}/{Content of the default \productName~theme file for header settings.}/{},%
+				{highlightboxes.dcmts}/{highlightboxes}/{Content of the default \productName~theme file for highlight box settings.}/{},%
+				{icons.dcmts}/{icons}/{Content of the default \productName~theme file for icon settings.}/{},%
+				{listing.dcmts}/{listing}/{Content of the default \productName~theme file for listing settings.}/{},%
+				{tables.dcmts}/{tables}/{Content of the default \productName~theme file for table settings.}/{},%
+				{titlepage.dcmts}/{titlepage}/{Content of the default \productName~theme file for title page settings.}/{}%
+			}{
+				\additionalPagebreak
+				\daListingTEMPLATE[captionpos=t]{./docart-utility/class-master-theme/\fileName}{Complete}{lst:source:utility:master-theme:\labelString}{\captionContent}
+			}
+		
+		\subsection{User Settings}
+			\lstset{style=LaTeX}
+			\foreach \fileName/\labelString/\captionContent/\additionalPagebreak in {%
+				{colorSettings.tex}/{color-settings}/{Content of the \productName~Utility Handbook settings file: \lstinline$colorSettings.tex$.}/{},%
+				{listingsSettings.tex}/{listing-settings}/{Content of the \productName~Utility Handbook settings file: \lstinline$listingsSettings.tex$.}/{},%
+				{pdfMetadata.tex}/{pdf-metadata}/{Content of the \productName~Utility Handbook settings file: \lstinline$pdfMetadata.tex$.}/{\newpage},%
+				{projectDetails.tex}/{project-details}/{Content of the \productName~Utility Handbook settings file: \lstinline$projectDetails.tex$.}/{},%
+				{titlepageContent.tex}/{titlepage-content}/{Content of the \productName~Utility Handbook settings file: \lstinline$titlepageContent.tex$.}/{}%
+			}{
+				\daListingTEMPLATE[captionpos=t]{./settings/\fileName}{all}{\labelString}{\captionContent}
+				\additionalPagebreak
+			}
+			
+		\newpage
+		\subsection{Content Examples}
+			\lstset{style=LaTeX}
+			\foreach \fileName/\labelString/\captionContent in {%
+				{docart_handbook_alpha-2022-04-30_rev0.tex}/{lst:source:doc:main}/{Listing of the complete main \LaTeX~file 
+					required to generate the documentation}, %
+				{./document_parts/docart_documentation_basic-functionality_v0.tex}/{lst:source:doc:basic-functionality}/%
+				{Listing of the \LaTeX~code to generate the basic functionality 
+					chapter of the documentation}, %
+				{./document_parts/basic_functionality_parts/docart_documentation_bf_highlight-boxes_v0.tex}/{lst:source:doc:bf:highlight-boxes}/{Listing of the \LaTeX~code to generate the \enquote{Highlight Boxes} section}, %
+				{./document_parts/basic_functionality_parts/docart_documentation_bf_icons_v0.tex}/{lst:source:doc:bf:icons-in-text}/{Listing of the \LaTeX~code to generate the \enquote{Icons in Text} section}
+			}{
+				\daListingTEMPLATE[emphstyle={\color{orange}\bfseries},moreemph={icon},captionpos=t]{\fileName}{Complete}{\labelString}{\captionContent}
+			}
+		

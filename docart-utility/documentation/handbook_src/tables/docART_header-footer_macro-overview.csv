@@ -1,0 +1,7 @@
+macro, sets the ..., location
+\lstinline$\ihead{CONTENT}$, inner header, top left
+\lstinline$\chead{CONTENT}$, center header, top center
+\lstinline$\ohead{CONTENT}$, outer header, top right
+\lstinline$\ifoot{CONTENT}$, inner footer, bottom left
+\lstinline$\cfoot{CONTENT}$, center footer, bottom center
+\lstinline$\ofoot{CONTENT}$, outer footer, bottom right

@@ -1,0 +1,244 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Licensing}
+	\label{appendix:chap:licensing}
+	\section{Mandatory Products}
+		\subsection{\LaTeX-Backend}
+			There are two options for the \LaTeX-Backend: Either \lstinline$MikTeX$ or \lstinline$texlive$. Both of them are a collection
+			of sub-modules, which all have their own license, \mbox{e.\,g.} MIT, GNU Public License (GPL), LaTeX Project Public License (LPPL) and others.
+			Currently the consent is that both \LaTeX-Backends are redistributable according to the Free Software Foundation's (FSF) definition and the 
+			Debian Free Software Guidelines under the constraint that one satisfies all the requirements placed by the owners of the respective bundled packages.  
+			\newline This has no effect for the usage of the \productName~Utility as long as one is not planning to ship any part of the \LaTeX-Backend with the 
+			version of ones product.
+			
+			\subsubsection{Option 1: MikTeX}
+				These links lead to the websites that elaborate on the licensing situation of \lstinline$MikTeX$.\\[0.25cm]
+				\textcolor{docartTurquoise!75}{\href{https://miktex.org/copying}{https://miktex.org/copying}}\\
+				\textcolor{docartTurquoise!75}{\href{https://www.gnu.org/philosophy/free-sw.html}{https://www.gnu.org/philosophy/free-sw.html}}\\
+				\textcolor{docartTurquoise!75}{\href{https://www.debian.org/intro/free}{https://www.debian.org/intro/free}}
+				
+			\subsubsection{Option 2: texlive}
+				The situation for \lstinline{texlive} is very similar to \lstinline$MikTeX$. Information can be found on the website of the \TeX~Users Group 
+				(TUG):\\[0.25cm]
+				\textcolor{docartTurquoise!75}{\href{https://tug.org/texlive/LICENSE.TL}{https://tug.org/texlive/LICENSE.TL}}
+		
+		\newpage	
+		\subsection{Python}
+			Similar to the situation with the \LaTeX-Backend, the Python Standard Library (PSL) is a collection of modules, each of which has its own specific
+			license. In contrast to the \LaTeX-Backend, there is a dedicated license for redistribution of the PSL: The Python Software Foundation (PSF) issued 
+			the PSF License Agreement, which is currently compatible to the GNU Public License (GPL). For further reading, visit the following websites:\\[0.25cm]
+			\color{docartTurquoise!75}\href{https://docs.python.org/3/license.html#psf-license}{https://docs.python.org/3/license.html\#psf-license}\normalcolor\\
+			\textcolor{docartTurquoise!75}{\href{https://www.gnu.org/licenses/gpl-3.0.en.html}{https://www.gnu.org/licenses/gpl-3.0.en.html}}\\[0.25cm]
+			Like mentioned previously for the \LaTeX-Backend, the licensing situation has no effect for the usage of the \productName~Utility as long as one is not
+			planning to ship any part of the PSL with the version of ones product.
+			\newline For context, the \productName~depends upon the following Python modules:\\
+			\label{sec:pythonModuleLicenses}
+			\daTableDefaultFancyCaptionOff[lcl]{./tables/docART_python-module-dependencies_license.csv}
+		
+		\subsection{Lua Hash Library}
+			\productName~uses the Lua Hash Library VERSION: 9 (2020-05-10) written by Egor Skriptunoff, released under the 
+			\href{https://opensource.org/licenses/MIT}{MIT License}.\\[0.25cm]
+			Links:\\[0.25cm]
+			\color{docartTurquoise!75}\href{https://github.com/Egor-Skriptunoff/pure_lua_SHA}{https://github.com/Egor-Skriptunoff/pure\_lua\_SHA}\normalcolor\\
+			\color{docartTurquoise!75}\href{https://github.com/Egor-Skriptunoff/pure_lua_SHA/blob/master/LICENSE}{https://github.com/Egor-Skriptunoff/pure\_lua\_SHA/blob/master/LICENSE}\normalcolor\\
+			\textcolor{docartTurquoise!75}{\href{https://opensource.org/licenses/MIT}{https://opensource.org/licenses/MIT}}
+
+		
+		\newpage
+		\subsection{\productName~Utility}
+			Almost all the files (exceptions: see warning boxes below) provided within the \productName~Utility are licensed under \href{https://www.gnu.org/licenses/gpl-3.0.en.html}{GNU General Public License (GPLv3)}. This includes all \LaTeX-, Python-, and Lua-files as well as the \productName~specific dcmts-files and the documentation (pdf as well as source).\\
+			If you are re-using some part of the \productName~Utility, please give credit according to the GPLv3 rules as follows:
+			\begin{center}
+				Martin Stimpfl, Daniel Sacré: \productName~Utility, \productVersion,\\ 
+				License: GNU General Public License (GPLv3).
+			\end{center}
+			
+			\begin{daWarningBox}
+				The \productName~logo is the only exemption: It is released under\\	\href{https://creativecommons.org/licenses/by-sa/4.0/deed.en}{Creative Commons Attribution-ShareAlike 4.0 International\\ (CC BY-SA 4.0)}. This means reusing the logo partially or\\ completely requires giving credit:
+				\begin{center}
+					Martin Stimpfl, Daniel Sacré: \productName~logo, \productVersion, CC BY-SA 4.0		
+				\end{center}
+				Please respect the CC clause that re-usage of logos, trademarks, etc. should done in a way that does not suggest that the original copyright holder endorses the person who re-uses the object.
+			\end{daWarningBox}
+			\vspace{0.25cm}
+			Links:\\[0.25cm]
+			\textcolor{docartTurquoise!75}{\href{https://github.com/d-sacre/docart-documentation-utility/blob/current-release/LICENSE}{https://github.com/d-sacre/docart-documentation-utility/blob/current-release/LICENSE}}\\
+			\textcolor{docartTurquoise!75}{\href{https://github.com/d-sacre/docart-documentation-utility/blob/current-release/docart-utility/class-naster-theme/cmt-images/license_cc-by-sa-4-0.txt}{repository: /docart-utility/class-master-theme/cmt-images/license\_cc-by-sa-4-0.txt}}\\
+			\textcolor{docartTurquoise!75}{\href{https://www.gnu.org/licenses/gpl-3.0.en.html}{https://www.gnu.org/licenses/gpl-3.0.en.html}}\\
+			\textcolor{docartTurquoise!75}{\href{https://creativecommons.org/licenses/by-sa/4.0/deed.en}{https://creativecommons.org/licenses/by-sa/4.0/deed.en}}
+			
+	\newpage
+	\subsubsection{When to give credit, re-publish the source/pdf and under which license?}
+	\label{appendix:sec:licensing:examples-when-credit-or-re-publishing}
+	\newcommand{\qAndATableRowEntry}[3]{
+		\begin{minipage}[t]{0.0125\linewidth}
+			\textbf{#1}
+		\end{minipage} 
+		& \begin{minipage}[t]{0.9\linewidth}
+			#2
+		\end{minipage}
+	}
+
+	\newcommand{\qAndAQUESTION}[1]{
+		\qAndATableRowEntry{\textbf{Q:}}{#1}{0.125cm}
+	}
+
+	\newcommand{\qAndAANSWER}[1]{
+		\qAndATableRowEntry{\textbf{A:}}{#1}{0.25cm}
+	}
+	
+	\rowcolors{2}{white}{white}
+	\begin{longtable}[c]{ll}
+		\qAndAQUESTION{
+			I wrote a documentation with the \productName~Utility for a customer.\\
+			Do I have to publish my (\LaTeX) source code and under which license?\\
+			Do I have to publish the pdf under the GNU General Public License (GPLv3)?\\
+			Do I have to give credit to (the authors of) the \productName~Utility?
+		}\\
+		& \\[-0.325cm]
+		\qAndAANSWER{
+			\textcolor{ForestGreen}{\bfseries No.} The (\LaTeX) source code does not have to be published. Like described on the last page,
+			most of the content of the \LaTeX~file is data specified by you, so either you or your
+			customer own the rights (depending on the agreement you have with your customer).
+			However, the authors recommend to provide the (\LaTeX) source code to the customer
+			so that the customer can do changes on his/her/its own.\\
+			The pdf may be distributed under any terms that you or your customer specifies.
+			It does not have to be made publicly available.\\
+			It is not necessary to give credit to the \productName~Utility. However, if it is possible for you
+			to give a little shout-out (something like "This documentation has been made with
+			the \productName~Utility.") and perhaps even provide a link to the github repository, this would
+			help to find new contributors and improve the product.
+		}\\
+		& \\
+		\qAndAQUESTION{
+			I designed my own theme or made changes to the default theme (dctms-files) and files under \lstinline$./settings/$.\\
+			Do I have to publish my (\LaTeX) source code and under which license?
+		}\\
+		& \\[-0.325cm]
+		\qAndAANSWER{ 
+			\textcolor{orange}{\bfseries Depends.} There are two cases:\\[-0.75cm]
+			\begin{enumerate}[label={Case \arabic*:},leftmargin=5em]
+				\setlength\itemsep{-0.1em}
+				\item Changes to setting files and dctms-files without license header: \textcolor{ForestGreen}{\bfseries No.}\\
+					 The authors consider changes in these files as user settings, which do not fall
+					 under copyright. If you think others could benefit from your theme, the authors encourage you to publish it.
+					 Despite there is no legal obligation, the authors would like to ask the publisher to use a permissive OpenSource license (ideally
+					 GNU General Public License (GPLv3) to keep it consistent with the \productName~Utility) and give a shout-out to the \productName~Utility.
+				\item Changes to dctms-files with license header:  \textcolor{red}{\bfseries Sort of.}\\
+					 The dctms-files with license header contain macro or environment definitions that are the back bone of the \productName~Utility. As long as these macros do not get changed, the rest of the file content has to be seen as user settings and therefore does not fall under copyright. If these themes are just used \mbox{e.\,g.} in a company internally, a publication is not required. As soon as this theme gets bundled with a product that gets sold, the full extend of GNU General Public License (GPLv3) is valid (mandatory publication under same license).
+			\end{enumerate}
+			This is the status for version \productVersion. The authors of the \productName~Utility plan to separate user settings and protected code more vigilantly in one of the next releases. 
+		}\\
+		& \\
+		\qAndAQUESTION{
+			I did some changes to the original \productName~Utility and want to sell it as a product or offer (payed) services with my altered version.\\
+			Do I have to publish my (\LaTeX) source code and under which license?
+		}\\
+		&\\[-0.325cm]
+		\qAndAANSWER{
+			\textcolor{red}{\bfseries Yes.} This situation is considered a fork, which is allowed
+			by the GNU General Public License (GPLv3) as long as the altered source code is published
+			with the same license or any later version (at your discretion) and the reference to the original product. Additionally, your
+			product has to be published under a different name and may not use any part of the original \productName~Utility (documentation, logos, etc.)
+			outside the cases specified in the respective license agreements (especially regarding advertising purposes).
+		}\\
+		& \\
+		\qAndAQUESTION{
+			I wrote a wrapper macro for an already existing \productName~command.\\
+			Do I have to publish my source code and under which license?
+		}\\
+		&\\[-0.325cm]
+		\qAndAANSWER{
+			\textcolor{ForestGreen}{\bfseries No.} This change does not add new functionality to the \productName~Utility and has more
+			to do with quality-of-life improvements. If you think your wrapper macro is helpful
+			and others could benefit from it, the authors encourage you to publish it. If you publish
+			it, the license has to be GNU General Public License (GPLv3) or any later version (at
+			your discretion), including a reference to the original \productName~Utility release.
+		}\\
+		& \\
+		\qAndAQUESTION{
+			I wrote a macro to extend the functionality of the \productName~Utility to suit my needs. It is neither based upon any in the \productName~Utility already existing elements nor does it not use any of the \productName~Utility's source code nor gets called by any element of it (docart-utility/macros).\\
+			Do I have to publish my source code and under which license?
+		}\\
+		&\\[-0.325cm]
+		\qAndAANSWER{
+			\textcolor{ForestGreen}{\bfseries No.} In this case, you are not building upon the \productName~Utility like \mbox{e.\,g.} by writing a wrapper macro, but instead creating your own product. The \LaTeX~philosophy is that the Backend only provides the general functionality and the end users write their own specific macros. Since the \productName~Utility is in itself just a user defined macro collecting that is published in the hope to be useful for somebody, the authors highly encourage the end user to extend the \productName~Utility's scope by their own ideas. The authors would love to see the extensions made publicly available (ideally as OpenSource under permissive licenses like GPL or MIT). If you do so, please respect the guidelines regarding re-usage of the \productName~Utility name, logo, etc. and if possible give a shout-out to the original project. 
+			
+		}\\
+		& \\
+		\qAndAQUESTION{
+			I searched through the \LaTeX~code of the handbook and found one neat code snippet that I want to re-use.\\
+			Do I need to give credit and have to publish my own product under GNU General Public License (GPLv3)?
+		}\\
+		&\\[-0.325cm]
+		\qAndAANSWER{\textcolor{docartOrange}{\bfseries Depends.} 
+			The authors see the \productName~Utility Handbook as a knowledge base, which should be free to use to everyone for every case. 
+			If you found one neat \LaTeX~trick or hack that you want to adapt for yourself, even outside of the scope of \productName~Utility, go for it; no need for publication under GNU General Public License (GPLv3) or giving credit (although the authors would be happy about a little shout-out if it is possible for you to do so). However, anything more like re-publishing substantial parts of the \productName~Utility Handbook has to be done
+			under GNU General Public License (GPLv3) and giving credit appropriately.
+		}\\
+		& \\
+		\qAndAQUESTION{
+			I want to re-publish (a part of) the \productName~Utility Handbook with some of my own changes.\\
+			Do I need to give credit and have to publish my own product under GNU General Public License (GPLv3)?
+		}\\
+		&\\[-0.325cm]
+		\qAndAANSWER{
+			\textcolor{red}{\bfseries Yes. Always.} This measure is required to ensure that one version of the \mbox{\productName}~Utility is 
+			always available for everyone. If a company internally uses the \productName~Utility with their own closed source extensions and want to write
+			an updated handbook for internal use only, there can an exception be made. However, as soon as the company sells a service based upon this modified version, the full extend of  GNU General Public License (GPLv3) applies.
+		}
+	\end{longtable}
+	\rowcolors{2}{tableRowHighlightColor}{white}
+	
+			
+	\newpage			
+	\section{Optional Products}
+		\subsection{Fonts}
+			The \productName~Utility ships with two fonts (text and code listings). The fonts have been chosen such that their licenses allow any form of
+			redistribution with except of font bundles. If the licenses of these fonts do not align with your needs, you can
+			easily swap them out with others (see \mbox{section \ref{chap:adapting-default-theme}}).
+			
+			\subsubsection{TeX Gyre Heros}
+				The \enquote{TeX Gyre Heros}-font is the main text font. It comes with a very liberal license; only requirement is that derivative works
+				have to be released under a different name.\\[0.25cm]
+				Links:\\[0.25cm]
+				\textcolor{docartTurquoise!75}{\href{https://tug.org/fonts/licenses/GUST-FONT-LICENSE.txt}{https://tug.org/fonts/licenses/GUST-FONT-LICENSE.txt}}\\
+				\textcolor{docartTurquoise!75}{\href{https://www.latex-project.org/lppl/}{https://www.latex-project.org/lppl/}}
+			
+			\subsubsection{Hack}
+				The \enquote{Hack}-font is used for code listings. It is released under the MIT and BITSTREAM VERA LICENSE. The latter one is more restrictive than the license of the \mbox{\enquote{TeX Gyre Heros}-font}. The BITSTREAM VERA LICENSE \mbox{e.\,g.} prohibits redistribution in a font bundle. The way the \productName~Utility uses the font should be uncritical.\\[0.25cm]
+				Links:\\[0.25cm]
+				\textcolor{docartTurquoise!75}{\href{https://github.com/source-foundry/Hack/blob/master/LICENSE.md}{https://github.com/source-foundry/Hack/blob/master/LICENSE.md}}\\
+				\textcolor{docartTurquoise!75}{\href{https://www.fontsquirrel.com/license/Bitstream-Vera-Sans}{https://www.fontsquirrel.com/license/Bitstream-Vera-Sans}}\\
+				\textcolor{docartTurquoise!75}{\href{https://opensource.org/licenses/MIT}{https://opensource.org/licenses/MIT}}
+				
+				
+		\subsection{TeXstudio}
+			TeXstudio is a \LaTeX~IDE, which is especially helpful for beginners. Installing this software is not necessary for the usage of the \productName~Utility; however it makes it simpler. Its permissive \href{https://www.gnu.org/licenses/old-licenses/gpl-2.0.html}{GNU General Public License (GPLv2)} makes it ideal for future \productName~software~bundles.\\[0.25cm]
+			Links:\\[0.25cm]
+			\textcolor{docartTurquoise!75}{\href{https://www.texstudio.org/}{https://www.texstudio.org/}}\\
+			\textcolor{docartTurquoise!75}{\href{https://www.gnu.org/licenses/old-licenses/gpl-2.0.html}{https://www.gnu.org/licenses/old-licenses/gpl-2.0.html}}
+		

@@ -1,0 +1,21 @@
+%+++Complete+++
+%+++changeTitlepageExample+++
+\newcommand{\daGenerateTitlepage}{
+    \begin{titlepage}
+	%+++comment changeTitlepageExample+++ 		% TITLE PAGE CONTENT
+	%+++changeTitlepageExample+++
+        \centering
+        \daTitlepageTitle
+        \daTitlepageLogo
+        \vfill
+        \daTitlepageDescription
+        \vfill
+        \daTitlepageAuthor
+        \vfill
+        \daTitlepageDocumentInformation
+	\daTitlepageLicense
+	%+++changeTitlepageExample+++
+    \end{titlepage}
+}
+%+++changeTitlepageExample+++
+%+++Complete+++

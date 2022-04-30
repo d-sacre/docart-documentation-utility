@@ -1,0 +1,57 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility logo                                                              %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)%%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[tikz]{standalone}
+
+\usetikzlibrary{calc,positioning}
+
+\newcommand{\penTipHeight}{0.1}
+\newcommand{\penBodyHeight}{0.4}
+
+\begin{document}
+	\begin{tikzpicture}
+%		\fill[orange](0,0)circle(0.42cm);
+%		\draw[draw=gray, line width=1pt, rounded corners=3pt](-0.45,-0.475)rectangle++(0.9,0.95);
+
+		\filldraw[fill=orange,line width=0.125pt, rounded corners=1pt](-0.525,-0.4125+0.125)rectangle++(0.425,1.075-0.0375-0.125);
+		\filldraw[fill=orange!50!gray,line width=0.125pt, rounded corners=3pt](-0.525,-0.4125)rectangle++(1.05,1-0.0375);
+		\filldraw[draw=gray, fill=white,line width=0.125pt, rounded corners=1pt](-0.525/1.5,-0.4125)rectangle++(1.05/1.5,0.975-0.0375); % document
+		\filldraw[draw=gray, fill=orange,line width=0.125pt, rounded corners=3pt](-0.525,-0.4125)rectangle++(1.05,0.825);
+		
+		% Commented out for visual clarity
+%		\foreach \y in {-0.125,-0.0625,0,0.0625,0.125,0.1875}{
+%			\draw[white,line width=0.5pt, cap=round](-0.3,\y)--++(0.6,0);
+%		}
+	
+%		\foreach \y in {-0.375,0.375}{
+%			\draw[white,line width=0.5pt, cap=round](-0.3,\y)--++(0.15,0)++(0.075,0)--++(0.15,0)++(0.075,0)--++(0.15,0);
+%		}
+%	
+		\node[inner sep=0, outer sep=0](pen) at (0,0){
+			\tikz{
+				\begin{scope}[rotate=-35]
+					\fill(0,0)--++(-0.05,\penTipHeight)--++(0.1,0)--cycle;
+					\fill(-0.05,\penTipHeight+0.025)rectangle++(0.1,\penBodyHeight)coordinate(penBodyTop);
+					\fill($(penBodyTop)+(0,0.0125)$)rectangle++(-0.1,0.03);
+					\fill[rounded corners=0.5pt]($(penBodyTop)+(0,0.0125)$)rectangle++(-0.1,0.035);
+				\end{scope}
+			}
+		};
+		\node[text=black,anchor=east,font=\large] at ($(pen.west)+(0.25,0)$){
+			\scalebox{1.5}[1.5]{$\left\{\right.$}
+		};
+		\node[text=black, anchor=west,font=\large] at ($(pen.east)+(-0.25,0)$){
+			\scalebox{1.5}[1.5]{$\left.\right\}$}
+		};
+%		\fill[white](0,0)circle(0.925cm);
+	\end{tikzpicture}
+\end{document}

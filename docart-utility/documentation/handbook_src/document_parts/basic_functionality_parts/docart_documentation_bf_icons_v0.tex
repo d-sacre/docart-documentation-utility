@@ -1,0 +1,57 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%+++Complete+++
+%+++bficons+++
+\section{Icons (\daTestIcon) in Text}
+%+++bficons+++
+	In comparison to many other word processors, the \productName~Backend allows inclusion of custom icons into the continuous text. It also works for headings, tables, captions and lists. The icons can be either images (png, jpg, pdf), TikZ-Elements and more. There is also a native scalability with font size, as it is demonstrated below with some of the default icons the \productName~Utility ships with. %\\[0.5cm] 
+	\begin{daInfoBox}
+		For version \productVersion, the authors do not recommend the user to create custom icons and therefore do not provide a how-to-guide.
+		The reason being that in one of the next releases, substantial changes will be made to the icons Backend, which should make the icon creation by the
+		end user way easier and more consistent.
+	\end{daInfoBox}
+	%+++bficons+++
+	This is a test normal sized text with an \daTestIcon icon within the text.\\[0.125cm]
+	This is is a normal sized text with an icon at the end \daTestIcon.\\[0.125cm]
+	{\large This is a large text with an \daTestIcon icon within the text.}\\[0.125cm]
+	{\Large This is a Large text with an \daTestIcon icon within the text.}\\[0.125cm]
+	{\LARGE This is a LARGE text with an \daTestIcon icon within the text.}\\[0.125cm]
+	%+++bficons+++
+	
+	\lstset{style=LaTeX}
+	\daListingTEMPLATE{./document_parts/basic_functionality_parts/docart_documentation_bf_icons_v0.tex}{bficons}{lst:bf:icons-in-text:icon-example}{%
+		\LaTeX~code for using icons in the text.
+	}
+	
+	The \lstinline$\daTestIcon$ comes in handy if a new font/typeface should be assessed.
+	\newline For everyday use,
+	\productName~provides a selection of default icons. The icons can be accessed by calling the macro \lstinline[emphstyle={\color{orange}\bfseries},moreemph={icon}]$\daIcon{ICONNAME}$. For example,
+	\lstinline[emphstyle={\color{orange}\bfseries},moreemph={icon}]$\daIcon{warning}$ 
+	generates an exclamation mark within a yellow triangle \daIcon{warning}. Icons with names containing \enquote{\lstinline$var$} can be scaled manually. For example,  \lstinline[emphstyle={\color{orange}\bfseries},moreemph={icon}]$\daIcon[10pt]{varwrench}$ generates a wrench \daIcon[10pt]{varwrench} of width \mbox{10\,pt}. The table \ref{tab:bf:iconOverview} lists all the currently available icons in \mbox{\productName}~\mbox{\productVersion}.
+	
+	\daTableDefaultFancyCaptionAbove{./tables/docART_icon-overview.csv}{tab:bf:iconOverview}{Overview of available icons in \productName~\productVersion.}
+
+%+++Complete+++

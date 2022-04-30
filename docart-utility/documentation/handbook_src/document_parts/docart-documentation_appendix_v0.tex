@@ -1,0 +1,54 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\addcontentsline{toc}{chapter}{Appendix}
+\begin{center}
+	\phantom{}\\
+	\vfil
+	\Huge \bfseries \color{docartTurquoise} Appendix\\
+	\vfil
+	\phantom{}\\
+\end{center}
+\appendix
+
+\newpage
+\chapter{Contributors}
+	\begin{longtable}[c]{cl}
+		\rowcolor{white}
+		Martin Stimpfl: & original idea, prototyping, design requirements, architecture, \\
+						\rowcolor{white}
+				       & Python scripting, hashing and regex expert, examples, \\ 
+				       \rowcolor{white}
+				       & debugging, proof-reading documentation\\[0.25cm]
+		\rowcolor{white}
+		Daniel Sacré: & prototyping, design requirements, architecture, Lua scripting, \\
+						\rowcolor{white}
+					  & \LaTeX~expert, examples, main author documentation
+	\end{longtable}
+
+\input{./document_parts/appendix_parts/docart-documentation_appendix_licensing.tex}
+\input{./document_parts/appendix_parts/docart-documentation_appendix_installation.tex}
+\input{./document_parts/appendix_parts/docart-documentation_appendix_source-code-listings.tex}

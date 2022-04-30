@@ -1,0 +1,8 @@
+object, \LaTeX~type, return type,\lstinline$TYPE$-id
+chapter, text, toc-layers,\lstinline$chap$
+section, text, toc-layers, \lstinline$sec$
+subsection, text, toc-layers, \lstinline$subsec$
+subsubsection, text, toc-layers, \lstinline$subsubsec$
+figure, float, object number, \lstinline$fig$
+table, float/longtable, object number, \lstinline$tab$
+listing, verbatim, object number, \lstinline$lst$

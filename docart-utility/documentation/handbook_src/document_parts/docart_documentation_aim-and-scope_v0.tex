@@ -1,0 +1,37 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility - A Python/Lua(LaTeX) based tool for semi-automated documentation %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: GNU General Public License (GPLv3)                                      %%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%                                                                                  %%
+%% This program is free software: you can redistribute it and/or modify             %%
+%% it under the terms of the GNU General Public License as published by             %%
+%% the Free Software Foundation, either version 3 of the License, or                %%
+%% (at your option) any later version.                                              %%
+%%                                                                                  %%
+%% This program is distributed in the hope that it will be useful,                  %%
+%% but WITHOUT ANY WARRANTY; without even the implied warranty of                   %%
+%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the                    %%
+%% GNU General Public License for more details.                                     %%
+%%                                                                                  %%
+%% You should have received a copy of the GNU General Public License                %%
+%% along with this program.  If not, see <https://www.gnu.org/licenses/>.           %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Aim and Scope of the \productName~Utility}
+	Like mentioned in the preface \ref{chapter:preface}, many people seem to be scared to create documents with WYSIWYW-applications. For a newcomer, the syntax and many options can be overwhelming at first. In addition, especially \LaTeX~has a steep learning curve. The authors of this utility wish to facilitate the usage of \LaTeX~for newcomers by providing a collection of easy-to-use wrapper macros without sacrificing any of the \LaTeX-functionality and flexibility. More advanced users could still write any other valid \LaTeX~code without having to deal with the tedious task of manually typesetting tables and listings. Besides that, the \productName~wants to make the most important feature of \LaTeX~((almost) everything gets recreate from scratch during a compilation) more accessible: Is an included image altered from an external source, it will be updated in the document during the next \LaTeX~compilation. Same holds for imported source code, tables, etc.. As a bonus, \productName~provides additional parsing scripts which run in the background to improve compilation efficiency as well as user friendliness. \\ 
+	To put it in a nutshell, \productName~continues the honored \TeX~tradition of creating macro collections for better usability and adds some additional parsing scripts in the backend. It is targeted for \LaTeX~beginners and professionals alike. The authors see as main use cases for \productName~\productVersion:
+	\begin{itemize}
+		\item Prototype development (Hard- and Software),
+		\item Software Development Kit (SDK) documentation,
+		\item User manuals/command reference for machines and scientific equipment,
+		\item Penetration testing documentation.
+	\end{itemize}
+
+	Since the \productName~Utility at its core is a (wrapper) macro collection with some additional scripts, some of the content of this handbook describes
+	functionality provided by other \LaTeX\\packages. To give the reader a better overview what macro is defined by the \productName~Utility and which is inherited from another package, the macros defined by the \productName~Utility are highlighted throughout this document in \textcolor{orange}{\bfseries orange}, whereas the ones which stem from another source are highlighted in \textcolor{blue}{\bfseries blue}. Furthermore, (with few exceptions like general, not necessarily \productName~Utility specific macros \lstinline[style=LaTeX]$\productName$, \lstinline[style=LaTeX]$\productVersion$, etc.) all environments and macros defined by the \productName~Utility start with the prefix \enquote{\lstinline$da$} (\mbox{e.\,g.} \lstinline[style=LaTeX]$daInfoBox$, \lstinline[style=LaTeX]$\daIcon$, etc.). 

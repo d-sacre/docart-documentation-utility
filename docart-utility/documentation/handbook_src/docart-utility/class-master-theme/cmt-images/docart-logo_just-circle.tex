@@ -1,0 +1,41 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% docART Utility logo                                                              %%
+%% Source: https://github.com/d-sacre/docart-documentation-utility/                 %%
+%% Version: alpha-2022-04-30                                                        %%
+%% License: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)%%
+%% Copyright (C) 2022 Martin Stimpfl, Daniel Sacré                                  %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[tikz]{standalone}
+
+\usetikzlibrary{calc,positioning}
+
+\newcommand{\penTipHeight}{0.1}
+\newcommand{\penBodyHeight}{0.4}
+
+\begin{document}
+	\begin{tikzpicture}
+		\fill[orange](0,0)circle(0.5cm);
+		\node[inner sep=0, outer sep=0](pen) at (0,0){
+			\tikz{
+				\begin{scope}[rotate=-35]
+					\fill(0,0)--++(-0.05,\penTipHeight)--++(0.1,0)--cycle;
+					\fill(-0.05,\penTipHeight+0.025)rectangle++(0.1,\penBodyHeight)coordinate(penBodyTop);
+					\fill($(penBodyTop)+(0,0.0125)$)rectangle++(-0.1,0.03);
+					\fill[rounded corners=0.5pt]($(penBodyTop)+(0,0.0125)$)rectangle++(-0.1,0.035);
+				\end{scope}
+			}
+		};
+		\node[text=black,anchor=east,font=\large] at ($(pen.west)+(0.25,0)$){
+			\scalebox{1.5}[1.5]{$\left\{\right.$}
+		};
+		\node[text=black, anchor=west,font=\large] at ($(pen.east)+(-0.25,0)$){
+			\scalebox{1.5}[1.5]{$\left.\right\}$}
+		};
+%		\fill[white](0,0)circle(0.925cm);
+	\end{tikzpicture}
+\end{document}

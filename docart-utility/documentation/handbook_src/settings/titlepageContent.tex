@@ -1,0 +1,38 @@
+\def\daTitlepageTitle{
+	\begin{tikzpicture}
+            \node[yshift=-5cm,xslant=1,yscale=1.6,orange!40,opacity=.2] at (10.5,-6.5) {\scalebox{6}{\productName}};
+            \node[yshift=-5cm,orange] at (9,-7) {\scalebox{6}{\productName}};
+        \end{tikzpicture}
+        \phantom{}\\[3cm]
+}
+
+\def\daTitlepageLogo{
+	\begin{tikzpicture}
+            \node[inner sep=0, outer sep=0,anchor=west](logo) at (0,0){
+                \includegraphics[width=5cm]{docart-utility/class-master-theme/cmt-images/docart-logo_folder_v0.pdf}
+            };
+        \end{tikzpicture}
+}
+
+\def\daTitlepageDescription{
+	\textcolor{orange}{
+            \large A Python/Lua(\LaTeX) Utility and \LaTeX~Class\\[0.125cm]
+            for Semi-automated Documentation\\[0.125cm]
+            of Projects involving Hardware and/or Software.
+        }
+}
+
+\def\daTitlepageAuthor{
+	\textcolor{gray}{\large Authors: Martin Stimpfl, Daniel Sacré}\\[0.125cm]
+}
+
+\def\daTitlepageDocumentInformation{
+	\textcolor{darkgray}{\Huge -- Handbook --}\\[1cm]
+	\textcolor{gray}{\productName~Utility, \productVersion}\\
+	\textcolor{gray}{Document Revision \documentRevision}\\[0.5cm]
+}
+
+\def\daTitlepageLicense{
+	\footnotesize
+	\textcolor{gray}{License: GNU General Public License (GPLv3)}
+}
