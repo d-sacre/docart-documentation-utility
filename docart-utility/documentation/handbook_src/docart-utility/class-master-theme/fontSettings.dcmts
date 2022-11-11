@@ -1,13 +1,8 @@
 %+++Complete+++
-\setmainfont[%
-	Path=./docart-utility/fonts/,%
-	BoldFont={texgyreheros-bold.otf},% 
-	ItalicFont={texgyreheros-italic.otf},%
-]{texgyreheros-regular.otf}
-
-\setmonofont[%
-	Path=./docart-utility/fonts/,%
-	BoldFont={Hack-Bold.ttf},% 
-	ItalicFont={Hack-Italic.ttf},%
-]{Hack-Regular.ttf}
+%\usepackage[sfdefault]{FiraSans} % alternative
+\usepackage[fakebold]{firamath-otf}
+\setmainfont[Numbers=OldStyle,BoldFont={Fira Sans SemiBold}]{Fira Sans Book}
+\setsansfont[Numbers=OldStyle,BoldFont={Fira Sans SemiBold}]{Fira Sans Book}
+\setmonofont{Fira Mono}
+\setmathsf[]{Fira Sans Book}
 %+++Complete+++
